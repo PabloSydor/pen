@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { IUsuario } from '@models/IUsuario';
 import { SuperHttpClientProvider } from '@paella-front/ngx-super-http-client';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,14 @@ export class ApiService {
 
   public getMe(): Observable<IUsuario> {
     return this.$shttp.use('app').get(`/user/me`);
+  }
+
+  public setLoc() {
+    this.$shttp.use('app').headers.reset();
+    this.$shttp.use('app').headers.set('Authorization', `Bearer ${environment.LOCAL_JWT}`);
+  }
+
+  public getMonitor(qr: any) {
+    return this.$shttp.use('app').get(`/lfriend/search?qr=${qr}`);
   }
 }

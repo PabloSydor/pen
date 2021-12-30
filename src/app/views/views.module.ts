@@ -3,12 +3,12 @@ import {
 } from '@angular/core';
 
 import { SharedModule } from '@app/shared/shared.module';
-import { LoginComponent } from './public/login/login.component';
+import { MonitorComponent } from './public/monitor/monitor.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    MonitorComponent
   ],
   imports: [
     SharedModule,

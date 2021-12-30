@@ -1,0 +1,74 @@
+<div class="w-100 px-4 contenedor" *ngIf="monitor !== undefined">
+  <div class="d-flex flex-row">
+    <div class="content rounded shadow position-fixed cuerpo{{monitor.qr}} tarjeta" id="monitor">
+      <div class="header{{monitor.qr}} d-flex align-items-center">
+        <div class="position-absolute">
+          <button class="btn" *ngIf="!oculto" (click)="ocultar()">
+            <i class="fas fa-expand fa-2x"></i>
+          </button>
+          <button class="btn" *ngIf="oculto" (click)="mostrar()">
+            <i class="fas fa-compress fa-2x"></i>
+          </button>
+        </div>
+        <div class="d-flex align-items-center mx-auto">
+          <div class="tituloMonitor mx-auto">
+            <p class="textoMonitor">{{ monitor.name }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex"  id="carrusel">
+        <img *ngIf="!monitor.imgs" [src]="avatar ? avatar : 'assets/images/icono.jpg'" class="imagenMonitor mx-auto w-100">
+        <ngb-carousel *ngIf="monitor.imgs" class="w-100">
+          <ng-template ngbSlide *ngFor="let img of monitor.imgs" class="w-100">
+            <div class="picsum-img-wrapper d-flex w-100" [id]="'slide-' + img.id">
+              <img [src]="img.url" class="imagenMonitor mx-auto w-100">
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="body">
+        <div class="d-flex flex-column">
+          <div class="d-flex mx-auto">
+            <button class="btn turnoMonitor rounded-circle textoCuerpo texto{{monitor.qr}} mb-0
+            mx-auto d-flex align-items-center justify-content-center p-0" id="info">
+              {{ monitor.curTurn }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content position-absolute tarjetas" id="tarjetas" *ngIf="relacionados !== undefined && relacionados.length !== 0">
+      <ul style="list-style: none;">
+        <li *ngFor="let item of relacionados" class="rounded shadow lista cuerpo{{item.idRelatedLocal.qr}}" style="overflow: hidden;">
+          <div class="header{{item.idRelatedLocal.qr}}" style="position: relative; z-index: 5;">
+            <div class="d-flex align-items-center">
+              <div class="tituloTarjetas mx-auto">
+                <p class="textoTarjetas">{{ item.idRelatedLocal.name }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="body posNum" style="position: relative; top: -3vh; z-index: 5;">
+            <div class="d-flex flex-row">
+              <div class="d-flex ml-auto mr-3">
+                <button class="btn turnoTarjeta rounded-circle infoTarj texto{{item.idRelatedLocal.qr}}
+                textoCuerpoTarjetas mb-0 mx-auto d-flex align-items-center justify-content-center">
+                  {{ item.idRelatedLocal.curTurn }}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex tarjetita" style="position: relative; top: -11vh; z-index: 3;">
+            <img *ngIf="!item.imgs" [src]="item.avatar ? item.avatar : 'assets/images/icono.jpg'" class="imagenTarjetas my-auto w-100">
+            <ngb-carousel *ngIf="item.imgs" class="w-100">
+              <ng-template ngbSlide *ngFor="let img of item.imgs" class="w-100">
+                <div class="picsum-img-wrapper d-flex w-100" [id]="'slide-' + img.id">
+                  <img [src]="img.url" class="w-100">
+                </div>
+              </ng-template>
+            </ngb-carousel>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
