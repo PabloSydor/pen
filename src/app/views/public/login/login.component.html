@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <img class="mx-auto d-block" src="assets/images/img-01.png">
+        </div>
+        <div class="card-body">
+          <form [formGroup]="loginForm">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" class="form-control" placeholder="Introduce tu email" formControlName="email"
+                    required>
+                  <div *ngIf="loginSubmitted && fLogin.email.errors">
+                    <p class="alert alert-danger" *ngIf="fLogin.email.errors.required">
+                      Campo requerido
+                    </p>
+                    <p class="alert alert-danger" *ngIf="fLogin.email.errors.email">
+                      Email no válido
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Contraseña</label>
+                  <input type="password" class="form-control" placeholder="Introduce tu contraseña"
+                    formControlName="password" appPassword [showPassword]="true" required>
+                  <div *ngIf="loginSubmitted && fLogin.password.errors">
+                    <p class="alert alert-danger" *ngIf="fLogin.password.errors.required">
+                      Campo requerido
+                    </p>
+                    <p class="alert alert-danger" *ngIf="fLogin.password.errors.minlength">
+                      6 carácteres mínimo
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="button" class="btn btn-primary btn-round" (click)="tryLogin()">
+                  <span *ngIf="!loading">Acceder</span>
+                  <div class="spinner-border spinner-border-sm" role="status" *ngIf="loading">
+                    <span class="sr-only"></span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

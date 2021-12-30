@@ -1,0 +1,16 @@
+<div class="modal-header border-0">
+    <h4 class="modal-title">¡Atención!</h4>
+    <button type="button" class="btn btn-sm align-self-center p-0" aria-label="Close" (click)="aModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body py-2">
+    <ng-container *ngIf="!!response">
+      <ng-container *ngIf="error.length > 0; else noError">
+        <p *ngFor="let e of error">{{ e.message }}</p>
+      </ng-container>
+      <ng-template #noError>
+        <p>¡Ooops! Ha ocurrido un error.</p>
+      </ng-template>
+    </ng-container>
+  </div>
