@@ -1,0 +1,28 @@
+
+<div class="col mb-4">
+
+  <div class="card h">
+    <!--Card image-->
+    <div class="view overlay">
+      <img class="card-img-top" src="../../assets/imgs/{{trabajador.foto}}" alt="Card image cap">
+      <a href="#!">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!--Card content-->
+    <div class="card-body">
+
+      <!--Title-->
+      <h4 class="card-title">{{trabajador.nombre}} ({{trabajador.cargo}})</h4>
+      <!--Text-->
+      <p class="card-text">{{trabajador.descripcion}}</p>
+
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary" (click)="borrar(trabajador)">Borrar</button>
+    </div>
+
+  </div>
+
+</div>

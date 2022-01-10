@@ -6,10 +6,12 @@
   },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
+    "src/polyfills.ts",
+    "src/app/card-trabajador/card-trabajador.component.ts"
   ],
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/**/**/*.ts",
   ],
   "exclude": [
     "src/test.ts",
