@@ -1,0 +1,6 @@
+
+@each $name, $size in $size-margin {
+    .g--margin-#{$name} {
+        margin: $size;
+    }
+}
