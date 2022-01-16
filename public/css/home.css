@@ -1,0 +1,14 @@
+/* <h1 class="home-title">Sydoria Cinema</h1>
+<p class="home-subtitle">The best place to watch your movies! Even better than Netflix!</p> */
+
+.home-title {
+    color: white;
+}
+
+.home-subtitle {
+    color: rgb(61, 149, 165);
+}
+
+.title {
+    padding: 24px 36px;
+}

@@ -1,0 +1,35 @@
+.c-menu__link:hover {
+    transition: .5s;
+    background-color: rgb(51, 46, 71);
+    color: white;
+}
+
+.c-menu__link {
+    margin-left: 12px;
+    border-radius: 6px;
+    transition: .7s;
+}
+
+.c-menu__link:active {
+    background-color: rgb(51, 46, 71);
+    color: white;
+}
+
+/* .c-navbar {
+    padding: 0;
+}
+
+.c-navbar__img {
+    margin-right: 0;
+}
+
+.c-navbar__container {
+    margin-left: 24px;
+}
+
+.c-navbar__brand {
+    color: white;
+    font-size: 20px;
+    margin-top: auto;
+    letter-spacing: 1px;
+} */

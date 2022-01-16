@@ -1,0 +1,87 @@
+/* <div class="contenedor">
+    @forelse ($movies as $movie)
+    <div class="movie-card">
+        <img src="imgs/movies/{{$movie['picture']}}" alt="" class="card__img">
+        <p class="card__title">{{$movie['title']}}</p>
+    </div>
+    @empty
+
+    @endforelse
+</div>
+ */
+
+ .card__title {
+     color: white;
+     text-align: center;
+     padding: 8px 12px;
+     font-size: 20px;
+     text-decoration: none;
+    text-underline-position: unset;
+ }
+
+ .movie-card {
+     padding: 8px;
+     margin: 8px;
+     border-radius: 6px;
+ }
+
+.contenedor {
+    background-color: rgb(51, 46, 71);
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card__img {
+    width: 250px;
+    border-radius: 6px;
+}
+
+
+
+
+.movie-card:hover > .card__title  {
+    color: rgb(0, 110, 255);
+    text-decoration: none;
+}
+
+.movie-card:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+/* <div class="contenedor">
+    <div class="izquierda">
+        <img class="imagen" src="../imgs/movies/{{$movie['picture']}}" alt="">
+        <p class="titulo">{{$movie['title']}}</p>
+    </div>
+    <div class="derecha">
+        <span class="span-info">Director: </span><p class="p-info">{{$movie['director']}}</p>
+        <span class="span-info">Year: </span><p  class="p-info">{{$movie['year']}}</p>
+    </div>
+</div> */
+
+/* .contenedor {
+    width: 90%;
+    margin-left: 5%;
+    background-color: rgb(51, 46, 71);
+    display: flex;
+    justify-content: center;
+}
+
+.izquierda {
+    width: 40%;
+}
+
+.derecha {
+    width: 40%;
+}
+
+.infor {
+    text-align: center;
+    display: flex;
+} */

@@ -1,0 +1,139 @@
+.contenedora {
+    width: 80%;
+    margin-left: 10%;
+    background-color: rgb(67, 61, 94);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 36px;
+    border-radius: 12px;
+}
+
+.izquierda {
+    width: 35%;
+    padding: 24px;
+    display: grid;
+    text-align: center;
+}
+
+.derecha {
+    width: 45%;
+    display: table;
+}
+
+.imagen {
+    width: 360px;
+    margin-left: auto;
+    border-radius: 8px;
+    max-height: 500px;
+}
+
+.titulo {
+    width: 360px;
+    margin-left: auto;
+    margin-top: 24px;
+    color: rgb(0, 89, 255);
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.titulo-der {
+    text-align: center;
+    font-size: 26px;
+    color: white;
+    font-weight: bold;
+    padding: 24px;
+    margin-top: 24px;
+}
+
+.span-info {
+    font-weight: bold;
+    color: rgb(143, 143, 143);
+    font-size: 18px;
+}
+
+.p-info {
+    color: rgb(88, 175, 187);
+    margin-left: 12px;
+    font-size: 18px;
+}
+
+.infor {
+    width: 80%;
+    margin-left: 10%;
+}
+
+/* <div class="c-panel">
+<div class="borrar">
+    <img class="img-panel" src="../imgs/logo/trash.png" alt="">
+</div>
+<div class="editar">
+    <img class="img-panel" src="../imgs/logo/edit.png" alt="">
+</div>
+</div> */
+
+
+
+.c-panel {
+    display: flex;
+    width: 80%;
+    margin-left: 10%;
+    background-color: rgb(57, 51, 85);
+    border-radius: 8px;
+    justify-content: space-evenly;
+    margin-top: 100px;
+    padding: 18px 0;
+}
+
+.img-panel {
+    width: 48px;
+}
+
+.borrar {
+    opacity: 90%;
+}
+
+.editar {
+    opacity: 90%;
+}
+
+.borrar:hover {
+    cursor: pointer;
+    opacity: 100%;
+    animation:spin 4s linear 4;
+
+}
+
+.editar:hover {
+    cursor: pointer;
+    opacity: 100%;
+    animation:spin 4s linear 4;
+
+}
+
+@keyframes spin {
+
+
+    0% {
+        transform: rotate(15deg);
+    }
+    100% {
+        transform: rotate(-30deg);
+    }
+
+
+}
+
+
+
+
+
+/* <div class="contenedor">
+    <div class="izquierda">
+        <img class="imagen" src="../imgs/movies/{{$movie['picture']}}" alt="">
+        <p class="titulo">{{$movie['title']}}</p>
+    </div>
+    <div class="derecha">
+        <span class="span-info">Director: </span><p class="p-info">{{$movie['director']}}</p>
+        <span class="span-info">Year: </span><p  class="p-info">{{$movie['year']}}</p>
+    </div>
+</div> */
