@@ -1,11 +1,11 @@
-@function porDiez($size) {
-  @return 10px * $size;
-}
+// @function porDiez($size) {
+//   @return 10px * $size;
+// }
 
 
-@function borderMaker($color) {
-  @return 1px solid $color;
-}
+// @function borderMaker($color) {
+//   @return 1px solid $color;
+// }
 
 
 // @function getColor($color, $variant) {
@@ -22,6 +22,12 @@
 //   @return $final;
 // }
 
+@font-face {
+  font-family: opens;
+  src: url("imgs/OpenSans-VariableFont_wdth,wght.ttf");
+}
+
+
 @function getMargin($key) {
   @return map-get($size-margin, $key);
 }
@@ -30,6 +36,13 @@
   @return nth(map-get($palett,""+$key),$index);
 }
 
+@function getGold($key) {
+  @return map-get($gold, $key);
+}
+
+@function getSpace-blue($key) {
+  @return map-get($space-blue, $key);
+}
 
 
 .meh {

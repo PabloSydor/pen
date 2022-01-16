@@ -1,0 +1,25 @@
+.c-title {
+    font-size: 18px;
+    font-family: opens, sans-serif;
+    color: white;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    margin: 4px;
+
+    &--highlight {
+        font-size: 28px;
+        color: getGold("5");
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+    &--blue {
+        background: #005c7b;
+        color: #bfbebb;
+        letter-spacing: 0.3px;
+        font-size: 22px;
+        display: table;
+        padding: 2px;
+    }
+
+}

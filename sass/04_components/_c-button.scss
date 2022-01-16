@@ -1,34 +1,64 @@
+
+
 .c-button {
-    color: black;
+    display: inline-flex;
+    color: getGold("1");
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color: transparent;
     font-family: sans-serif;
-    text-align: center;
-    @include proporcion(8, 24);
-    border-radius: 4px;
+    padding: 4px 10px;
+    margin: 20px;
 
-    &--primario {
-        background-color: rgb(0, 72, 206);
+    &__icon {
+        max-width: 36px;
+    }
+
+    &:hover {
         color: white;
-
-        &--peligroso {
-            background-color: rgb(221, 40, 55);
-            color: white;
-
-        }
+        border-color: getGold("5");
+        cursor: pointer;
     }
 
-    &--secundario {
-        background-color: white;
-        border: borderMaker(rgb(48, 48, 48));
+    &--tertiary {
+        border: none;
+        color: getGold("5");
 
-
-        &--peligroso {
-            border: borderMaker(rgb(221, 40, 55));
-
+        &:hover {
+            text-decoration: underline;
+            color: getGold("5");
+            cursor: pointer;
+            text-underline-position: under;
         }
 
 
     }
 
+    &--big {
+        padding: 4px 10px;
+        align-items: center;
+    }
+
+    &--hidden {
+        background-color: #444;
+        color: getGold("1");
+        padding: 4px 8px;
+        border-radius: 3px;
 
 
+        &:hover {
+            color: getGold("5");
+            background-color: black;
+            border-color: transparent;
+        }
+
+
+    }
+
+
+
+}
+
+body {
+    background-color: black;
 }
