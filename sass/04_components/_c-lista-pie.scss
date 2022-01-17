@@ -1,0 +1,21 @@
+.c-lista-pie {
+    
+    padding: 24px;
+
+    &__header {
+        font-weight: bold;
+        font-family: sans-serif;
+        font-size: 28px;
+        color: #ccc;
+        border-bottom: .5px solid rgba(151, 151, 151, 0.774);
+        padding-bottom: 18px;
+    }
+
+ &__item {
+         border-bottom: .5px solid rgb(151, 151, 151, 0.774);
+         margin: 0;
+         font-size: 14px;
+ }
+
+
+}

@@ -439,7 +439,11 @@ html {
   margin: 20px;
 }
 .c-button__icon {
+  min-width: 36px;
+  min-height: 36px;
   max-width: 36px;
+  max-height: 36px;
+  padding: 4px 4px;
 }
 .c-button:hover {
   color: white;
@@ -452,6 +456,7 @@ html {
 }
 .c-button--tertiary:hover {
   text-decoration: underline;
+  text-decoration-thickness: 2px;
   color: #FFCC00;
   cursor: pointer;
   text-underline-position: under;
@@ -469,6 +474,19 @@ html {
 .c-button--hidden:hover {
   color: #FFCC00;
   background-color: black;
+  border-color: transparent;
+}
+.c-button--seccondary {
+  width: 100%;
+  color: #0099cc;
+  border-radius: 0;
+  border: none;
+  margin: 0;
+  padding: 4px 8px;
+}
+.c-button--seccondary:hover {
+  color: #0099cc;
+  background-color: rgba(150, 150, 150, 0.342);
   border-color: transparent;
 }
 
@@ -493,18 +511,42 @@ body {
 .c-title--blue {
   background: #005c7b;
   color: #bfbebb;
+  font-weight: bold;
   letter-spacing: 0.3px;
   font-size: 22px;
   display: table;
   padding: 2px;
 }
 
+.c-lista-pie {
+  padding: 24px;
+}
+.c-lista-pie__header {
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 28px;
+  color: #ccc;
+  border-bottom: 0.5px solid rgba(151, 151, 151, 0.774);
+  padding-bottom: 18px;
+}
+.c-lista-pie__item {
+  border-bottom: 0.5px solid rgba(151, 151, 151, 0.774);
+  margin: 0;
+  font-size: 14px;
+}
+
 .c-text {
   font-family: opens;
   color: #aaa;
   margin-bottom: 22px;
-  line-height: 120%;
-  letter-spacing: 0.2px;
+  line-height: 130%;
+  letter-spacing: 0.25px;
+}
+.c-text--highlight {
+  color: #ddd;
+}
+.c-text--alternative {
+  color: #ca6;
 }
 
 .g--arcade-4 {
