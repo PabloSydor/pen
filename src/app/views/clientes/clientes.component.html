@@ -1,0 +1,30 @@
+<h1 class="display-1 c-title">Clientes</h1>
+<p class="lead c-paragraph">
+  En este apartado puedes gestionar los clientes existentes!
+</p>
+
+
+<table class="table table-striped c-table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Cargo</th>
+      <th scope="col">Ver</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Borrar</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let cliente of clientes">
+      <th scope="row">{{cliente.id}}</th>
+      <td>{{cliente.nombre}}</td>
+      <td>{{cliente.cargo}}</td>
+      <td><button routerLink="/clientes/{{cliente.id}}" type="button" class="btn btn-info">Ver</button></td>
+      <td><button type="button" class="btn btn-warning">Editar</button></td>
+      <td><button  (click)="borrarCliente(cliente.id)" type="button" class="btn btn-danger">Borrar</button></td>
+    </tr>
+
+  </tbody>
+</table>

@@ -1,0 +1,41 @@
+.l-contenedor {
+  margin-left: 48px;
+  margin-top: 48px;
+  display: flex;
+  background-color: rgb(247, 247, 247);
+  width: 580px;
+   border-radius: 12px;
+   justify-content: space-between;
+}
+
+.l-contenedor__derecha {
+  // margin-top: 64px;
+  // margin-left: 36px;
+padding-right: 36px;
+margin-top: 64px;
+}
+
+.c-titulo {
+  margin-left: 24px;
+  margin-top: 24px;
+}
+
+.c-image {
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.dato {
+  color: rgb(79, 105, 164);
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.display-2 {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.lead {
+  margin-left: 8px;
+}
