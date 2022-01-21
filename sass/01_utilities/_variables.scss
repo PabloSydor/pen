@@ -28,6 +28,19 @@ $size-margin: (
     "XXXL": 64px,
 );
 
+$font-size: (
+    "none": 0px,
+    "XXXS": 8px,
+    "XXS": 12px,
+    "XS": 14px,
+    "S": 16px,
+    "M": 20px,
+    "L": 24px,
+    "XL": 32px,
+    "XXL": 48px,
+    "XXXL": 64px,
+);
+
 
 $palett: (
     "grey": (#000000, #1F1F1F, #404040, #616161, #808080, #A1A1A1, #BFBFBF, #E0E0E0, #FFFFFF),
@@ -66,4 +79,10 @@ $space-blue: (
     "8": #012C32,
     "9": #011719
 );
+
+$texts: (
+    "gold": #FFCC00,
+    "blue": #006894,
+    "light": #cfcfcf
+)
 

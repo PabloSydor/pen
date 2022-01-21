@@ -518,6 +518,56 @@ body {
   padding: 2px;
 }
 
+.l-metrica {
+  font-family: opens, sans-serif;
+  margin-bottom: 18px;
+  margin-left: 6px;
+  margin-right: 6px;
+  display: grid;
+  width: fit-content;
+  grid-template-areas: "img v-up" "img v-down" "img v-label";
+}
+.l-metrica__circle {
+  padding: 2px 6px;
+  margin: 2px 8px;
+  border: 1px solid #5f5f5f;
+  border-radius: 50%;
+}
+.l-metrica__image {
+  grid-area: img;
+  width: 56px;
+}
+.l-metrica__label {
+  grid-area: v-label;
+  padding: 3px 12px;
+  background-color: rgba(66, 66, 66, 0.849);
+  margin-left: auto;
+  width: 150px;
+  text-align: center;
+  max-height: 20px;
+  height: 20px;
+  margin-top: auto;
+}
+.l-metrica__value-up {
+  grid-area: v-up;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-bottom: 4px;
+}
+.l-metrica__value-down {
+  grid-area: v-down;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-bottom: 4px;
+  margin-top: auto;
+}
+
+.l-metrica__label:hover {
+  background-color: rgba(24, 24, 24, 0.815);
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .c-lista-pie {
   padding: 24px;
 }
@@ -579,6 +629,58 @@ body {
 
 .g--cammo-1 {
   background-color: #f3ff93;
+}
+
+.g--color-gold {
+  color: #FFCC00;
+}
+
+.g--color-blue {
+  color: #006894;
+}
+
+.g--color-light {
+  color: #cfcfcf;
+}
+
+.g--font-size-none {
+  font-size: 0px;
+}
+
+.g--font-size-XXXS {
+  font-size: 8px;
+}
+
+.g--font-size-XXS {
+  font-size: 12px;
+}
+
+.g--font-size-XS {
+  font-size: 14px;
+}
+
+.g--font-size-S {
+  font-size: 16px;
+}
+
+.g--font-size-M {
+  font-size: 20px;
+}
+
+.g--font-size-L {
+  font-size: 24px;
+}
+
+.g--font-size-XL {
+  font-size: 32px;
+}
+
+.g--font-size-XXL {
+  font-size: 48px;
+}
+
+.g--font-size-XXXL {
+  font-size: 64px;
 }
 
 .g--margin-none {
@@ -1039,6 +1141,25 @@ body {
 .l-columns-12 {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+}
+
+.l-metricas {
+  display: flex;
+  justify-content: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 24px;
+}
+
+.l-dos {
+  display: grid;
+  grid-template-areas: "left right";
+}
+.l-dos__left {
+  grid-area: left;
+}
+.l-dos__right {
+  grid-area: right;
 }
 
 .l-dolmen {

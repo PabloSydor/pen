@@ -5,7 +5,7 @@
 //     "1": #fff8b5,
 // );
 
-
+// facil
 @each $name, $color in $pal-arcade {
     .g--arcade-#{$name} {
         background-color: $color;

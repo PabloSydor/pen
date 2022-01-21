@@ -1,0 +1,12 @@
+// @each $name, $size in $size-margin {
+//     .g--margin-#{$name} {
+//         margin: $size;
+//     }
+// }
+
+
+@each $name, $color in $texts {
+    .g--color-#{$name} {
+        color: $color;
+    }
+}

@@ -1,0 +1,14 @@
+.l-dos {
+    display: grid;
+    grid-template-areas: "left right";
+
+    &__left {
+        grid-area: left;
+    }
+
+    &__right {
+        grid-area: right;
+    }
+
+
+}
