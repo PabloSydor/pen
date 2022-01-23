@@ -1,7 +1,8 @@
 <h1 class="display-1 c-title">Clientes</h1>
 <p class="lead c-paragraph">
-  En este apartado puedes gestionar los clientes existentes!
+  En este apartado puedes gestionar los clientes existentes! <span><button  routerLink="/cliente/new" type="button" class="btn btn-success">Nuevo</button></span>
 </p>
+
 
 
 <table class="table table-striped c-table">
@@ -22,7 +23,7 @@
       <td>{{cliente.nombre}}</td>
       <td>{{cliente.cargo}}</td>
       <td><button routerLink="/clientes/{{cliente.id}}" type="button" class="btn btn-info">Ver</button></td>
-      <td><button type="button" class="btn btn-warning">Editar</button></td>
+      <td><button  routerLink="/clientes/editar/{{cliente.id}}" type="button" class="btn btn-warning">Editar</button></td>
       <td><button  (click)="borrarCliente(cliente.id)" type="button" class="btn btn-danger">Borrar</button></td>
     </tr>
 

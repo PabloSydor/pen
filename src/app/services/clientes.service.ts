@@ -83,6 +83,15 @@ export class ClientesService {
     this.clientes.splice(pos, 1);
   }
 
+  public editarCliente(id: any, cliente: Cliente) {
+    let pos=this.clientes.findIndex(t=>t.id==id);
+    this.clientes[pos] = cliente;
+  }
+
+  public newCliente(cliente: Cliente) {
+    this.clientes.push(cliente);
+  }
+
 
 }
 

@@ -1,0 +1,35 @@
+.c-title {
+  margin: 24px;
+}
+
+.c-paragraph {
+  margin: 0 24px;
+}
+
+.camp {
+  margin: 12px;
+}
+
+.container-fluids {
+  padding: 24px 86px;
+  margin-right: 36px;
+}
+
+
+.containers {
+  display: flex;
+  justify-content: center;
+}
+
+
+.btn {
+  width: 200px;
+  text-align: center;
+  background-color: coral;
+  color: white;
+  border-radius: 8px;
+}
+
+.btn:hover {
+  background-color: rgb(204, 78, 32);
+}

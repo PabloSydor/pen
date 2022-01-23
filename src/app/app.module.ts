@@ -8,6 +8,8 @@ import { ClientesComponent } from './views/clientes/clientes.component';
 import { InicioComponent } from './views/inicio/inicio.component';
 import { MenuComponent } from './views/menu/menu.component';
 import { VerComponent } from './views/ver/ver.component';
+import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
+import { NewClienteComponent } from './new-cliente/new-cliente.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { VerComponent } from './views/ver/ver.component';
     ClientesComponent,
     InicioComponent,
     MenuComponent,
-    VerComponent
+    VerComponent,
+    EditarClienteComponent,
+    NewClienteComponent
   ],
   imports: [
     BrowserModule,
