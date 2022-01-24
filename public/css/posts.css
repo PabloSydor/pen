@@ -1,0 +1,103 @@
+/* <div class="post">
+<p class="titulo">{{$post['titulo']}}</p>
+<p class="titulo">{{$post['contenido']}}</p>
+</div>
+@empty
+<div class="error">
+<p>No hay posts</p>
+</div> */
+
+.post {
+    width: 460px;
+    padding: 12px;
+    background-color: rgb(214, 233, 255);
+    border-radius: 8px;
+    box-shadow: 14px 15px 14px -11px rgb(238, 238, 238);
+    margin: 8px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 0;
+}
+
+.p-titulo {
+    margin-bottom: 0;
+    color: rgb(79, 105, 164);
+    font-size: 18px;
+}
+
+.titulo {
+    padding: 8px 24px;
+    margin-bottom: 24px;
+    color: rgb(79, 105, 164);
+}
+
+/*
+<div class="botones">
+<button class="ver">Ver</button>
+</div> */
+
+
+.ver {
+    background-color: rgb(79, 105, 164);
+    border-radius: 8px;
+    border: none;
+    padding: 4px 12px;
+    text-decoration: none;
+
+}
+
+
+.ver:hover {
+    background-color: rgb(54, 72, 116);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.borrar {
+    background-color: rgb(164, 79, 79);
+    border-radius: 8px;
+    border: none;
+    padding: 5px 12px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.borrar:hover {
+    background-color: rgb(116, 54, 54);
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+
+.editar {
+    background-color: rgb(224, 207, 50);
+    border-radius: 8px;
+    border: none;
+    padding: 5px 12px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.editar:hover {
+    background-color: rgb(177, 168, 42);
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+#ver {
+    color: white;
+}
+
+.botones {
+    display: flex;
+    align-items: baseline;
+}
+
+.butn {
+    margin-right: 8px;
+}

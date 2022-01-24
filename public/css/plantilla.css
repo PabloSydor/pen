@@ -1,0 +1,9 @@
+.fecha {
+    margin-top: 0;
+    padding: 8px;
+    padding-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+    line-height: 10px;
+    color: rgb(114, 114, 114);
+}

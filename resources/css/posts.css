@@ -1,0 +1,16 @@
+/* <div class="post">
+<p class="titulo">{{$post['titulo']}}</p>
+<p class="titulo">{{$post['contenido']}}</p>
+</div>
+@empty
+<div class="error">
+<p>No hay posts</p>
+</div> */
+
+.post {
+    width: 360px;
+    padding: 24px;
+    background-color: rgb(224, 255, 177);
+    border-radius: 8px;
+    box-shadow: 14px 15px 14px -11px rgba(227,227,227,1);
+}
