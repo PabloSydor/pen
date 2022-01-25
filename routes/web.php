@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,10 @@ Route::resource('posts', PostController::class);
 Route::get('nueva', [PostController::class, 'nuevoPrueba'])->name('posts.nueva');
 
 Route::get('editar/{id}', [PostController::class, 'editarPrueba'])->name('posts.editar');
+
+
+Route::get('login', 'App\Http\Controllers\LoginController@loginForm')->name('login');
+
+Route::post('login', 'App\Http\Controllers\LoginController@login');
+
+Route::get('logout', 'App\Http\Controllers\LoginController@logout')->name('logout');

@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\PostSeeder;
 use Database\Seeders\UsersSeeder;
+use Database\Seeders\ComentarioSeeder;
+
 
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +22,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Post::factory(15)->create();
         $this->call(UsersSeeder::class);
         $this->call(PostSeeder::class);
+        $this->call(ComentarioSeeder::class);
+
 
     }
 }

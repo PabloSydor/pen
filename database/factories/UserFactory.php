@@ -20,9 +20,10 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $vari = $this->faker->word;
         return [
-            'login' => $this->faker->word,
-            'password' => "1234" // password
+            'login' => $vari,
+            'password' => bcrypt($vari) // password
         ];
     }
 

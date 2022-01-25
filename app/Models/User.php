@@ -18,6 +18,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Post');
     }
 
+    public function comentarios()
+    {
+        return $this->hasMany('App\Models\Comentario');
+    }
+
 
 
 

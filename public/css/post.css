@@ -1,0 +1,126 @@
+/* <div class="post">
+    <p class="f-titulo">{{$post['titulo']}}</p><span class="f-fecha">{{$post['created_at']}}</span>
+    <p class="f-escrito">Escrito por {{$post->user->login}}</p>
+
+
+    <p class="f-contenido">{{$post['contenido']}}</p>
+
+</div> */
+
+
+.post {
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.f-titulo {
+    font-size: 28px;
+    color: rgb(79, 105, 164);
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.f-contenido {
+    font-size: 18px;
+    color: rgb(0, 21, 71);
+    width: 340px;
+    padding-right: 18px;
+}
+
+.f-fecha {
+    font-size: 14px;
+    color: rgb(145, 145, 145);
+}
+
+.f-escrito {
+    font-size: 14px;
+    color: rgb(0, 132, 255);
+}
+
+
+
+
+
+/* <h3 class="c-titulo">Comentarios</h3>
+
+@forelse ($post->comentarios as $comentario)
+<div class="c">
+    <p class="c-login">({{$comentario->user->login}})</p>
+    <p class="c-com">{{$comentario['comentario']}}</p>
+</div>
+
+@empty
+    <p class="c-error">No hay comentarios!</p>
+@endforelse */
+
+
+.c-titulo {
+   padding: 0 24px;
+}
+
+.c  {
+    width: 880px;
+    padding: 12px 24px;
+    background-color: rgb(241, 241, 241);
+    margin: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 14px 15px 14px -11px rgb(238, 238, 238);
+}
+
+.c-login {
+    color: rgb(79, 105, 164);
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.c-com {
+margin-bottom: 0;
+color: rgb(78, 78, 78);
+width: 880px;
+}
+
+.c-error {
+    width: 560px;
+    padding: 12px 24px;
+    background-color: rgb(255, 210, 210);
+    margin: 12px 24px;
+    border-radius: 8px;
+    color: rgb(155, 18, 18);
+    text-align: center;
+    box-shadow: 14px 15px 14px -11px rgb(238, 238, 238);
+}
+
+.borrar {
+    background-color: rgb(164, 79, 79);
+    border-radius: 8px;
+    border: none;
+    padding: 5px 12px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.borrar:hover {
+    background-color: rgb(116, 54, 54);
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+
+.editar {
+    background-color: rgb(224, 207, 50);
+    border-radius: 8px;
+    border: none;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.editar:hover {
+    background-color: rgb(177, 168, 42);
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}

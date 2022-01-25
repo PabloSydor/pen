@@ -1,0 +1,58 @@
+
+.formu {
+    padding: 12px 64px;
+    width: 600px;
+
+}
+
+.butn {
+    background-color: rgb(79, 105, 164);
+    border-radius: 8px;
+    border: none;
+    padding: 4px 12px;
+    text-decoration: none;
+}
+
+input.butn {
+    color: white;
+}
+
+
+.butn:hover {
+    background-color: rgb(54, 72, 116);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* .formm {
+    width: 50px;
+} */
+
+.tit {
+    color: rgb(44, 44, 44);
+    font-size: 24px;
+    margin-left: 24px;
+    margin-bottom: 48px;
+}
+
+
+.editar {
+    background-color: rgb(224, 207, 50);
+    border-radius: 8px;
+    border: none;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.editar:hover {
+    background-color: rgb(177, 168, 42);
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.er {
+    margin-left: 64px;
+}

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Comentario extends Model
 {
     use HasFactory;
 
@@ -15,9 +15,10 @@ class Post extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function comentarios()
+    public function post()
     {
-        return $this->hasMany('App\Models\Comentario');
+        return $this->belongsTo('App\Models\Post');
     }
+
 
 }
