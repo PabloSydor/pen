@@ -1,0 +1,43 @@
+<div class="col mb-4">
+
+  <div class="card h-100">
+    <!--Card image-->
+    <div class="view overlay">
+      <img class="card-img-top" src="./assets/{{cliente.foto}}" alt="Card image cap">
+      <a href="#!">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!--Card content-->
+    <div class="card-body container">
+
+      <!--Title-->
+      <h4 class="card-title">{{cliente.nombre}} ({{cliente.cargo}})</h4>
+      <!--Text-->
+      <p class="card-text">{{cliente.descripcion}}</p>
+
+      <div class="row">
+        <div id="votos" class="col-3">Votos: {{cliente.votos}}</div>
+
+
+        <div (click)="darLike(cliente)" class="col-3" id="like">
+          <img  width="48" src="../../../assets/like.png" alt="">
+        </div>
+
+
+
+        <div (click)="darDislike(cliente)" class="col-3" id="dislike">
+          <img src="../../../assets/dislike.png" alt="">
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary" (click)="ver(cliente)">Ver</button>
+      <button type="button" class="btn btn-danger" (click)="borrar(cliente)">Borrar</button>
+    </div>
+
+  </div>
+  <!-- Card -->
+</div>

@@ -1,0 +1,28 @@
+
+
+
+#dislike {
+  margin: 12px;
+  text-align: center;
+}
+
+#like {
+  margin: 12px;
+  text-align: center;
+}
+
+
+#like:hover {
+  cursor: pointer;
+  background-color: rgb(233, 233, 233);
+}
+
+#dislike:hover {
+  cursor: pointer;
+  background-color: rgb(233, 233, 233);
+}
+
+#votos {
+  margin-top: auto;
+  margin-bottom: auto;
+}

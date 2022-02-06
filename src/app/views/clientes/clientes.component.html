@@ -1,0 +1,11 @@
+<div class="row row-cols-1 row-cols-md-4">
+  <app-card-trabajador *ngFor="let cliente of clientes"
+  [cliente]="cliente"
+  (eventoBorrar)="borrarCliente($event)"
+  (eventoLike)="likear($event)"
+  (eventoDislike)="deletear($event)"
+  (eventoVer)="veer($event)">
+
+
+  </app-card-trabajador>
+</div>
