@@ -1,0 +1,22 @@
+// // @function getColor($color, $variant) {
+// //     $i: 1;
+// //     $colors:map-get($palett,$color);
+// //     $final: black;
+// //     @for $i from 1 to length($colors) {
+// //       @if $i == $variant {
+// //         // @return nth($colors,$i);
+// //         $final: nth($colors, $i);
+// //       }
+// //     }
+// //     @return $final;
+// //   }
+
+
+// @each $color, $variants in $palett {
+//     $i: 1;
+//     @for $i from 1 to length($variants)+1 {
+//         .g-background-color-#{$color}-#{$i} {
+//             background-color: nth($variants, $i);
+//         }
+//     }
+// }

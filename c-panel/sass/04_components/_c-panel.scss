@@ -1,0 +1,123 @@
+// <div class="c-panel">
+//                 <div class="c-panel__left">
+//                     <div class="c-panel__media">
+//                         <img class="c-panel__img" src="./assets/imgs/four.png">
+//                     </div>
+//                 </div>
+//                 <div class="c-panel__right">
+//                     <div class="c-panel__info">
+//                         <p class="c-panel__title">Envía dinero en cuestión de segundos</p>
+//                         <p class="c-panel__text">Haz más cosas con tus amigos: envía dinero, divide facturas modo rápido
+//                             y sencillo. Solo necesitas un número de teléfono o una dirección de correo electrónico.</p>
+//                         <button class="c-pannel__btn">Enviar dinero ahora</button>
+//                     </div>
+//                 </div>
+//             </div>
+
+
+.c-panel {
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    &__left {
+        transition: .5s;
+        width: 50%;
+        padding: 24px 36px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &__right {
+        transition: .5s;
+        width: 50%;
+        padding: 24px 36px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &__info {
+        padding: 24px 36px;
+    }
+
+
+    &__img {
+        width: 10vw;
+        min-width: 220px;
+    }
+
+    &__text {
+            font-family: "paypal";
+            margin-bottom: 24px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #2c2e2f;
+            font-size: 14px;
+    }
+
+    &__title {
+        font-family: "paypal-light";
+        color: #4a4a4a;
+        font-weight: bold;
+        font-size: 30px;
+        letter-spacing: 1px;
+        line-height: 46px;
+        margin-bottom: 24px;
+    }
+
+    &__btn {
+        margin: 0;
+        padding: 0;
+        font-family: "paypal";
+        border: none;
+        background-color: transparent;
+        color: #0070ba;
+        font-size: 16px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+
+
+
+
+
+    @media screen and (max-width: 876px) {
+        & {
+            flex-direction: column;
+        }
+
+        &__left {
+            transition: .5s;
+            width: 100%;
+            justify-content: center;
+            padding-bottom: 0;
+        }
+    
+        &__right {
+            transition: .5s;
+            width: 100%;
+            justify-content: center;
+            padding-top: 0;
+        }
+
+        &__img {
+            width: 25vw;
+        }
+
+        &__info {
+            text-align: center;
+        }
+    }
+
+
+
+
+
+}

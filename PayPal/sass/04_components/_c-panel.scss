@@ -1,0 +1,51 @@
+.c-panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 24px 120px;
+    height: 400px;
+
+    &--gris {
+        background-color: #f5f7fa;
+    }
+
+
+
+&__content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+&__left {
+    width: 50%;
+    padding-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+&__right {
+    width: 50%;
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+}
+
+&__info {
+    width: 480px;
+}
+
+&__img {
+    width: 420px;
+}
+
+
+
+
+
+}

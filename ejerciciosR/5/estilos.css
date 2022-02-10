@@ -1,0 +1,70 @@
+/* <div class="l-page">
+        <div class="l-header">
+
+        </div>
+
+        <div class="l-menu">
+
+        </div>
+
+        <div class="l-body">
+            
+        </div>
+
+        <div class="l-footer">
+            
+        </div> */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.l-page {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    background-color: red;
+    grid-template-areas: "header header header header"
+    "menu body body body"
+    "menu body body body"
+    "menu body body body"
+    "menu body body body"
+    "footer footer footer footer";
+}
+
+.l-page__header {
+    grid-area: header;
+    background-color: rgb(24, 41, 117);
+}
+
+.l-page__menu {
+    grid-area: menu;
+    background-color: rgb(54, 76, 177);
+}
+
+.l-page__body {
+    grid-area: body;
+    background-color: rgb(225, 230, 255);
+}
+
+.l-page__footer {
+    grid-area: footer;
+    background-color: rgb(10, 25, 88);
+}
+
+@media screen and (max-width: 500px) {
+    .l-page {
+        grid-template-areas: "header header header header"
+        "body body body body"
+        "body body body body"
+        "body body body body"
+        "body body body body"
+        "footer footer footer footer";
+    }
+    .l-page__menu {
+        display: none;
+    }
+}

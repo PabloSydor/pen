@@ -1,0 +1,107 @@
+.cuadrado {
+    width: 100px;
+    height: 100px;
+    background-color: coral;
+    margin: 200px;
+    transition: .5s;
+    transform-origin: center;
+}
+
+
+/* .cuadrado:hover {
+    transform: translateX(80px);
+    transition: .5s ease-in-out 1s;
+} */
+
+/* .cuadrado:hover {
+    transform: translate(50px, 100px);
+    transition: .5s;
+} */
+
+/* .cuadrado:hover {
+    transform: rotateY(180deg);
+    transition: .5s;
+} */
+
+
+/* .cuadrado:hover {
+    transform: rotate(360deg);
+    transition: .5s;
+} */
+
+/* .cuadrado:hover {
+    transform: scale(2, 3);
+    transition: .5s;
+} */
+
+
+/* .cuadrado:hover {
+    transform: scale(.5, .5);
+    transition: .5s;
+} */
+
+/* .cuadrado:hover {
+    transform: skew(20deg, 10deg);
+    transition: .5s;
+} */
+
+/* .cuadrado:hover {
+    transform: translate(50px, 100px) rotate(20deg);
+} */
+
+.c-button {
+    padding: 10px 20px 10px 20px;
+    background-color: #ffffff;
+    border: 1px solid #bbd4f7;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 1s, box-shadow 1s;
+  }
+   
+  .c-button:hover {
+    background-color: #deebfc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+
+  .c-cuadrado {
+    width: 100px;
+    height: 100px;
+    background-color: #bbd4f7;
+    border-radius: 4px;
+  }
+   
+  .c-cuadrado--girar {
+    animation: animacion-girar ease-in-out 3s;
+  }
+   
+   
+  @keyframes animacion-girar {
+    0% {
+      transform: rotate(0deg);
+      background-color: #bbd4f7;
+      transition: .5s;
+    }
+     
+    50% {
+        background-color: #1C4673;
+    }
+     
+    100% {
+      transform: rotate(720deg);
+      background-color: #bbd4f7;
+    }  
+     
+  }
+
+
+
+
+
+
+
+
+
+
+
+

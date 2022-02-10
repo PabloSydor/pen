@@ -1,0 +1,23 @@
+@each $name, $size in $sizes {
+    .g--min-width-#{$name} {
+        min-width: $size;
+    }
+}
+
+@each $name, $size in $sizes {
+    .g--min-width-#{$name}\@movil {
+        min-width: $size;
+    }
+}
+
+@each $name, $size in $sizes {
+    .g--min-width-#{$name}\@tablet {
+        min-width: $size;
+    }
+}
+
+@each $name, $size in $sizes {
+    .g--min-width-#{$name}\@ordenador {
+        min-width: $size;
+    }
+}

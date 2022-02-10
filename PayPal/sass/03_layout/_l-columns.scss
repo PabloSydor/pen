@@ -1,0 +1,14 @@
+// $i: 1;
+//     @for $i from 1 to 13 {
+//         @if $i == 1 {
+//             .l-columns {
+//                 @include columns(1);
+//             }
+//         } @else {
+//             .l-columns-#{$i} {
+//                 @include columns($i);
+//             }
+//         }
+//     }
+
+ 

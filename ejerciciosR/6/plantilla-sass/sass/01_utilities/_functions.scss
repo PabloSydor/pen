@@ -1,0 +1,42 @@
+@function porDiez($size) {
+  @return 10px * $size;
+}
+
+
+@function borderMaker($color) {
+  @return 1px solid $color;
+}
+
+
+// @function getColor($color, $variant) {
+//   $i: 1;
+//   $colors: map-get($palett, $color);
+//   $final: black;
+
+//   @for $i from 1 to length($colors)+1 {
+//     @if $i==$variant {
+//       $final: nth($colors, $i);
+//     }
+//   }
+
+//   @return $final;
+// }
+
+@function getMargin($key) {
+  @return map-get($size-margin, $key);
+}
+
+@function getColor($key,$index) {
+  @return nth(map-get($palett,""+$key),$index);
+}
+
+
+
+.meh {
+  background-color: getColor("coral", 7);
+  margin: getMargin("M");
+}
+
+
+
+

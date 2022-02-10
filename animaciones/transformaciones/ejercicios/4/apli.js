@@ -1,0 +1,3 @@
+function dale() {
+    alert("hola")
+}

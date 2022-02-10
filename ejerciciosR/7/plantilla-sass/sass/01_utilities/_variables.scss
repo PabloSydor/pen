@@ -1,0 +1,67 @@
+// ABREVIATURAS
+// PAL = PALETA
+
+// $pal-arcade: (
+//     "4": #00ad7c,
+//     "3": #52d681,
+//     "2": #b5ff7d,
+//     "1": #fff8b5,
+// );
+
+// $pal-cammo: (
+//     "4": #560d0d,
+//     "3": #76a21e,
+//     "2": #c6cf65,
+//     "1": #f3ff93,
+// );
+
+// $size-margin: (
+//     "none": 0px,
+//     "XXXS": 4px,
+//     "XXS": 8px,
+//     "XS": 12px,
+//     "S": 16px,
+//     "M": 20px,
+//     "L": 24px,
+//     "XL": 32px,
+//     "XXL": 48px,
+//     "XXXL": 64px,
+// );
+
+
+// $palett: (
+//     "grey": (#000000, #1F1F1F, #404040, #616161, #808080, #A1A1A1, #BFBFBF, #E0E0E0, #FFFFFF),
+//     "blue": (#011019, #0A2E47, #1C4C73, #2F6398, #407BBF, #6793D0, #90B0E4, #B8CCF5, #E6EDFE),
+//     "turquoise": (#011913, #0A473B, #1C7364, #2F988C, #40BFB5, #67D0CD, #90E4E4, #B8F2F5, #E6FCFE),
+//     "dark-purple": (#0D0119, #26093E, #41175E, #5D267D, #7A349D, #9D3CC3, #B657D6, #D270EB, #E98DFC),
+//     "light-purple": (#120119, #3A0A47, #631C73, #8A2F98, #B240BF, #CB67D0, #E390E4, #F5B8F3, #FEE6FD),
+//     "red": (#190501, #400E07, #621A13, #832421, #A52C2C, #CC3B33, #DC5C50, #EE7E6D, #FC9F8D),
+//     "coral": (#931C1A, #B62A20, #DA3C2B, #E0634D, #E68670, #ECA793, #F3C9BA, #F9E5DC, #FFFFFF),
+//     "green": (#021901, #0A470A, #1C731F, #2F9838, #40BF4F, #67D078, #90E4A1, #B8F5C7, #E6FEED),
+//     "yellow": (#191401, #4C4005, #82720D, #B1A416, #E2D81D, #E9E94E, #EFF382, #F4FAB3, #FCFEE6),
+//     "orange": (#3C1E02, #743E02, #AD6201, #E68E00, #FFB01F, #FFCD57, #FEE18F, #FEF2C8, #FFFFFF),
+// );
+
+$sizes: (
+    "1": 100px,
+    "2": 150px,
+    "3": 200px,
+    "4": 250px,
+    "5": 300px,
+    "6": 350px,
+    "7": 400px,
+    "8": 450px,
+    "9": 500px,
+    "10": 550px,
+    "11": 600px,
+);
+
+$screens: (
+    "movil": 576px,
+    "tablet": 768px,
+    "ordenador": 992px
+);
+
+// Los posibles valores de cada uno de ellos serán: 100px, 150px , 200px, 250px, 300px, 350px, 400px, 450px, 500px, 550px, 600px
+
+// Crea también otro modificador global para overflow: auto;

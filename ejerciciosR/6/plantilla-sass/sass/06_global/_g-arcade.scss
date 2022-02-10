@@ -1,0 +1,13 @@
+// $pal-arcade: (
+//     "4": #00ad7c,
+//     "3": #52d681,
+//     "2": #b5ff7d,
+//     "1": #fff8b5,
+// );
+
+
+@each $name, $color in $pal-arcade {
+    .g--arcade-#{$name} {
+        background-color: $color;
+    }
+}

@@ -1,0 +1,47 @@
+@each $name, $size in $sizes {
+    .g--width-#{$name} {
+        @include fixed($size);
+    }
+}
+
+
+@each $screen, $value in $screens {
+    @media (min-width: $value) {
+        @each $name, $size in $sizes {
+                .g--width-#{$name}\@#{$screen} {
+                    @include fixed($size);
+                }
+            }
+    }
+}
+
+
+// @media (min-width: 576px) {
+// @each $name, $size in $sizes {
+//     .g--width-#{$name}\@movil {
+//         width: $size;
+//         max-width: $size;
+//         min-width: $size;
+//     }
+// }
+// }
+
+// @media (min-width: 768px) {
+// @each $name, $size in $sizes {
+//     .g--width-#{$name}\@tablet {
+//         width: $size;
+//         max-width: $size;
+//         min-width: $size;
+//     }
+// }
+// }
+
+// @media (min-width: 992px) {
+// @each $name, $size in $sizes {
+//     .g--width-#{$name}\@ordenador {
+//         width: $size;
+//         max-width: $size;
+//         min-width: $size;
+//     }
+// }
+// }

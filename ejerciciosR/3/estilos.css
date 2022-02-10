@@ -1,0 +1,31 @@
+
+.az {
+    background-color: rgb(71, 140, 230);
+    width: clamp(100px, 70vw, 800px);
+    height: clamp(100px, 70vw, 800px);
+}
+
+.ve {
+    background-color: rgb(71, 230, 111);
+    width: min(800px, 80vw);
+    height: min(800px, 80vw);
+}
+
+.ro {
+    background-color: rgb(230, 95, 71);
+    width: max(100px, 10vw);
+    height: max(100px, 10vw);
+}
+
+.pi {
+    background-color: rgb(230, 71, 204);
+    width: calc(50vw + 20px);
+    height: calc(50vw + 20px);
+}
+
+.ye {
+    background-color: rgb(230, 219, 71);
+    width: clamp(100px, calc(50vw + 20px), 600px);
+    height: clamp(100px, calc(50vw + 20px), 600px);
+}
+

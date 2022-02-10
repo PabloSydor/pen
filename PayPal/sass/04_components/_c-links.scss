@@ -1,0 +1,74 @@
+// <div class="c-footer">
+//                 <div class="c-links">
+//                     <div class="c-links__left">
+//                         <a href="#" class="c-links__link">Ayuda y Contacto</a>
+//                         <a href="#" class="c-links__link">Tarifas</a>
+//                         <a href="#" class="c-links__link">Centro de seguridad</a>
+//                         <a href="#" class="c-links__link">App</a>
+//                         <a href="#" class="c-links__link">Dónde comprar</a>
+//                         <a href="#" class="c-links__link">Opinión</a>
+//                     </div>
+//                     <div class="c-links__right">
+                        
+//                     </div>
+//                 </div>
+
+//                 <div class="c-links">
+//                     <div class="c-links__left">
+//                         <a href="#" class="c-links__link">Sobre PayPal</a>
+//                         <a href="#" class="c-links__link">Newsroom</a>
+//                         <a href="#" class="c-links__link">Empleo</a>
+//                         <a href="#" class="c-links__link">Programadores</a>
+//                         <a href="#" class="c-links__link">Partners</a>
+//                     </div>
+//                     <div class="c-links__right">
+//                         <a href="#" class="c-links__link">© 1999-2022</a>
+//                         <a href="#" class="c-links__link">Accesibilidad</a>
+//                         <a href="#" class="c-links__link">Privacidad</a>
+//                         <a href="#" class="c-links__link">Cookies</a>
+//                         <a href="#" class="c-links__link">Acuerdos legales</a>
+//                     </div>
+//                 </div>
+
+//             </div>
+
+.c-footer {
+    padding: 48px 200px;
+}
+
+.c-links {
+display: flex;
+justify-content: space-between;
+margin-bottom: 24px;
+
+&--top {
+    border-bottom: 1px solid rgb(206, 206, 206);
+    margin-bottom: 12px;
+}   
+
+
+
+    &__flag {
+        width: 24px;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: #2c2e2f;
+        margin-right: 8px;
+        font-family: "paypal";
+        font-size: 14px;
+        font-weight: bold;
+
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        &--secondary {
+            color: rgb(148, 148, 148);
+        }
+    }
+
+}

@@ -1,0 +1,9 @@
+@mixin proporcion($y-axis, $x-axis) {
+    padding: #{$y-axis}px #{$x-axis}px;
+    // margin: #{$y-axis}px #{$x-axis}px;
+}
+
+// @mixin columns($numero) {
+//     display: grid;
+//     grid-template-columns: repeat($numero, 1fr);
+// }

@@ -1,0 +1,33 @@
+.astro {
+    opacity: 60%;
+    width: 30px;
+    margin-right: 12px;
+}
+
+.astros {
+    animation: show 2s 5s;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+@keyframes show {
+    0% {
+      opacity: 60%;
+      width: 30px;
+    }
+     
+    50% {
+        opacity:100%;
+        width: 38px;
+    } 
+    
+    100% {
+        opacity: 60%;
+        width: 30px;
+      }
+     
+  }

@@ -1,0 +1,23 @@
+
+.az {
+    background-color: rgb(71, 140, 230);
+    font-size: 20px;
+    width: 200em;
+    height: 200em;
+}
+
+.ve {
+    background-color: rgb(71, 230, 111);
+    width: 200rem;
+    height: 200rem;
+}
+
+.ro {
+    background-color: rgb(230, 95, 71);
+    width: 200px;
+    height: 200px;
+}
+
+html {
+    font-size: 24px;
+}

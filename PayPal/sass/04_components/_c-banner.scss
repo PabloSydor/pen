@@ -1,0 +1,47 @@
+
+// <div class="c-banner">
+// <video id="video2" preload="" autoplay="" muted="" playsinline="" loop="none">
+//     <source src="./assets/images/video.mp4" type="video/mp4">
+//     </video> 
+// <p class="c-title">Estamos a tu lado para que tengas diferentes maneras de comprar, pagar y contribuir.
+// </p>
+// <button class="c-button c-button--alternative">Crear cuenta gratis</button>
+// </div>
+
+
+.c-banner {
+
+    overflow: hidden;
+    width: 100vw;
+    max-width: 100%;
+    display: table;
+    margin-bottom: 380px;
+
+
+    &__video {
+        position: absolute;
+        bottom: 0px;
+        max-width: 100%;
+        z-index: -100;
+        object-fit: cover;
+    }
+
+    &__title {
+        font-family: "paypal-light";
+        color: white;
+        font-size: 36px;
+        font-weight: 700;
+        margin: 36px 360px 24px 360px;
+        text-align: center;
+        line-height: 44px;
+        letter-spacing: .2px;
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        max-width: 100%;
+    }
+
+
+}

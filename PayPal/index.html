@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>PayPal</title>
+</head>
+
+<body>
+    <!-- <link rel="stylesheet" href="index.js"> -->
+    <div class="l-page">
+
+        <!-- <div class="main-menu">
+            <ul class="main-menu__items main-menu__items--movil-hide">
+                <li class="main-menu__item"><a href="#home">Home</a></li>
+                <li class="main-menu__item"><a href="#news">News</a></li>
+                <li class="main-menu__item"><a href="#contact">Contact</a></li>
+                <li class="main-menu__item"><a href="#about">About</a></li>
+            </ul>
+            <a href="javascript:void(0);" class="main-menu__hamburger" onClick="toggleVisibilityMenu()">☰</a>
+        </div> -->
+
+        <div class="l-page__header">
+            <div class="c-menu">
+                <div class="c-menu__buttons">
+                    <button href="javascript:void(0);" class="c-menu__hamburguer c-button"
+                        onClick="toggleVisibilityMenu()">☰ Menu</button>
+                </div>
+                <div class="c-menu__logo">
+                    <picture>
+                        <source media="(max-width: 1080px)" srcset="./assets/images/lil.png" />
+                        <img src="./assets/images/icon.png"  />
+                      </picture>
+                    <!-- <img src="./assets/images/icon.png" alt=""> -->
+                </div>
+                <div class="c-menu__options">
+                    <a href="#">PARTICULARES</a>
+                    <a href="#">EMPRESAS</a>
+                    <a href="#">PROGRAMADORES</a>
+                    <a href="#">AYUDA</a>
+                </div>
+                <div class="c-menu__buttons">
+                    <button class="c-button">Entrar</button>
+                    <button class="c-button c-button--primary">Crear cuenta</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="l-page__body">
+            <div class="c-banner">
+                <video class="c-banner__video" id="video2" preload="" autoplay="" muted="" playsinline="" loop="none">
+                    <source src="./assets/images/video.mp4" type="video/mp4">
+                </video>
+                <p class="c-banner__title">Estamos a tu lado para que tengas diferentes maneras de comprar, pagar y
+                    contribuir.
+                </p>
+                <div class="c-banner__button">
+                    <button class="c-button c-button--alternative">Crear cuenta gratis</button>
+                </div>
+            </div>
+
+            <div class="c-panel c-panel--gris">
+                <div class="c-panel__content">
+                    <div class="c-panel__left">
+                        <img src="./assets/images/one.jpg" alt="" class="c-panel__img">
+                    </div>
+                    <div class="c-panel__right">
+                        <div class="c-panel__info">
+                            <p class="c-title">Ayudamos a que todo el mundo esté unido</p>
+                            <p class="c-text">Todos estamos buscando nuevas maneras de permanecer unidos. Descubre cómo
+                                hemos estado presentes, desde para pagar de forma segura tus clases de yoga online hasta
+                                para comprar comida para llevar sin necesidad de contacto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="c-panel">
+                <div class="c-panel__content">
+                    <div class="c-panel__left">
+                        <div class="c-panel__info">
+                            <p class="c-title">Envía dinero en cuestión de segundos</p>
+                            <p class="c-text">Haz más cosas con tus amigos: envía dinero, divide facturas modo rápido y
+                                sencillo. Solo necesitas un número de teléfono o una dirección de correo electrónico.*
+                            </p>
+                            <button class="c-button c-button--tertiary">Enviar dinero ahora</button>
+                        </div>
+                    </div>
+                    <div class="c-panel__right">
+                        <img src="./assets/images/two.png" alt="" class="c-panel__img">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="c-panel c-panel--gris">
+                <div class="c-panel__content">
+                    <div class="c-panel__left">
+                        <img src="./assets/images/three.gif" alt="" class="c-panel__img">
+                    </div>
+                    <div class="c-panel__right">
+                        <div class="c-panel__info">
+                            <p class="c-title">¿Necesitas devolver una compra? Podemos reembolsarte los gastos de envío
+                                de
+                                la devolución</p>
+                            <p class="c-text">Si devuelves una compra que hayas realizado con PayPal, podemos
+                                reembolsarte
+                                los gastos de envío de la devolución**.</p>
+                            <button class="c-button c-button--tertiary">Activar el servicio</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="c-panel">
+                <div class="c-panel__content">
+                    <div class="c-panel__left">
+                        <div class="c-panel__info">
+                            <p class="c-title">Paga en 3 plazos sin intereses en miles de tiendas online.</p>
+                            <p class="c-text">Compra lo que necesites, cuando lo necesites y divide tu compra en 3
+                                plazos
+                                sin intereses***..</p>
+                            <button class="c-button c-button--tertiary">Más información</button>
+                        </div>
+                    </div>
+                    <div class="c-panel__right">
+                        <img src="./assets/images/four.png" alt="" class="c-panel__img">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="c-panel c-panel--gris">
+                <div class="c-panel__content">
+                    <div class="c-panel__left">
+                        <img src="./assets/images/five.gif" alt="" class="c-panel__img">
+                    </div>
+                    <div class="c-panel__right">
+                        <div class="c-panel__info">
+                            <p class="c-title">Paga sin ningún contacto</p>
+                            <p class="c-text">Con la aplicación de PayPal, solo necesitas tocar tu propio móvil cuando
+                                pagas
+                                en persona.</p>
+                            <button class="c-button c-button--tertiary">Más información</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="c-merch">
+            <p class="c-merch__title c-title">Compra en los sitios web de tus marcas favoritas</p>
+            <div class="c-merch__sites">
+                <img src="./assets/images/uno.png" alt="" class="c-merch__brand">
+                <img src="./assets/images/dos.png" alt="" class="c-merch__brand">
+                <img src="./assets/images/tres.png" alt="" class="c-merch__brand">
+                <img src="./assets/images/cuatro.png" alt="" class="c-merch__brand">
+                <img src="./assets/images/cinco.png" alt="" class="c-merch__brand">
+            </div>
+
+            <div class="c-merch__legal">
+                <p class="c-text c-text--legal">* El destinatario tendrá que configurar una cuenta PayPal. Si
+                    todavía no tiene una, podemos ayudarle a crearla gratis.</p>
+                <p class="c-text c-text--legal">** Devoluciones reembolsadas: <button
+                        class="c-button c-button--tertiary g--font-size-XS">sujeto a condiciones</button></p>
+                <p class="c-text c-text--legal">*** Paga en 3 plazos está sujeto a la aprobación por parte de
+                    PayPal. Consulta el <button class="c-button c-button--tertiary g--font-size-XS">documento de
+                        información
+                        previa</button> y <button class="c-button c-button--tertiary g--font-size-XS">los términos y
+                        condiciones</button> para más información. Crédito con un pago inicial obligatorio.
+                    Disponible solo para clientes particulares. Crédito de dos meses. Tienes un plazo de 14 días
+                    para desistir de tu crédito. El prestamista es PayPal (Europe) S.à rl et Cie, SCA, 22-24
+                    Boulevard Royal, L-2449 Luxemburgo.</p>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="l-page__footer">
+
+            <div class="c-footer">
+                <div class="c-links c-links--top">
+                    <div class="c-links__left">
+                        <a href="#" class="c-links__link">Ayuda y Contacto</a>
+                        <a href="#" class="c-links__link">Tarifas</a>
+                        <a href="#" class="c-links__link">Centro de seguridad</a>
+                        <a href="#" class="c-links__link">App</a>
+                        <a href="#" class="c-links__link">Dónde comprar</a>
+                        <a href="#" class="c-links__link">Opinión</a>
+                    </div>
+                    <div class="c-links__right">
+                        <img class="c-links__flag" src="./assets/images/esp.png" alt="">
+                    </div>
+                </div>
+
+                <div class="c-links">
+                    <div class="c-links__left">
+                        <a href="#" class="c-links__link c-links__link--secondary">Sobre PayPal</a>
+                        <a href="#" class="c-links__link c-links__link--secondary">Newsroom</a>
+                        <a href="#" class="c-links__link c-links__link--secondary">Empleo</a>
+                        <a href="#" class="c-links__link c-links__link--secondary">Programadores</a>
+                        <a href="#" class="c-links__link c-links__link--secondary">Partners</a>
+                    </div>
+                    <div class="c-links__right">
+                        <a href="#" class="c-links__link c-links__link--secondary">© 1999-2022</a>
+                        <a href="#" class="c-links__link c-links__link--secondary">Accesibilidad</a>
+                        <a href="#" class="c-links__link c-links__link--secondary">Privacidad</a>
+                        <a href="#" class="c-links__link c-links__link--secondary">Cookies</a>
+                        <a href="#" class="c-links__link c-links__link--secondary">Acuerdos legales</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

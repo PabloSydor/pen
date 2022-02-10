@@ -1,0 +1,164 @@
+// <div class="c-menu">
+// <div class="c-menu__logo">
+//     <img src="./assets/images/logo.png" alt="">
+// </div>
+// <div class="c-menu__options">
+//     <a href="#">Particulares</a>
+//     <a href="#">Empresas</a>
+//     <a href="#">Programadores</a>
+//     <a href="#">Ayuda</a>
+// </div>
+// <div class="c-menu__buttons">
+//     <button class="c-button">Entrar</button>
+//     <button class="c-button c-button--primary">Crear cuenta</button>
+// </div>
+// </div>
+
+
+
+
+.c-menu {
+    background-color: white;
+    padding: 0 104px;
+    display: flex;
+    height: 66px;
+    justify-content: space-evenly;
+    margin-bottom: 3px;
+
+    &__hamburguer {
+        display: none;
+    }
+
+    &__logo {
+
+        margin-top: auto;
+        margin-bottom: auto;
+
+        & img {
+            width: 120px;
+        }
+
+    }
+
+
+    &__options {
+
+        margin-top: auto;
+        margin-bottom: auto;
+
+        & a {
+            text-decoration: none;
+            font-family: sans-serif;
+            color: rgb(39, 39, 39);
+            font-size: 14px;
+            padding: 25px;
+            font-family: "paypal-light";
+            font-weight: 700;
+
+            &:hover {
+                text-decoration: none;
+                box-shadow: inset 0px -3px 0px 0px #0070ba;
+            }
+
+        }
+    }
+
+    &__buttons {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+
+
+
+}
+
+
+
+@media (max-width: 1080px) {
+    .c-menu {
+        &__options {
+            display: none;
+
+        }
+
+        &__buttons .c-button--primary {
+            display: none;
+        }
+
+        &__hamburguer {
+            display: block;
+        }
+
+        &__logo {
+    
+            & img {
+                width: 30px;
+            }
+    
+        }
+
+    }
+}
+
+
+
+
+// .main-menu {
+//     display: flex;
+//     flex-direction: row;
+// }
+
+// @media (max-width: 499px) {
+//     .main-menu {
+//         position: fixed;
+//         top: 0;
+//         left: 0;
+//     }
+// }
+
+// .main-menu__hamburger {
+//     display: none;
+// }
+// @media (max-width: 499px) {
+//     .main-menu__hamburger {
+//         display: block;
+//     }
+// }
+
+
+
+
+// .main-menu__items {
+//     display: flex;
+//     flex-direction: row;
+// }
+// @media (max-width: 499px) {
+//     .main-menu__items {
+//         flex-direction: column;
+//     }
+// }
+
+
+// .main-menu__item {
+//     padding: 10px;
+//     color: #ffffff;
+//     background-color: #c0c0c0;
+// }
+// @media (max-width: 499px) {
+//     .main-menu__item {
+//         padding-left: 2px;
+//         background-color: #00ff00;
+//     }
+// }
+
+
+// @media (max-width: 499px) {
+//     .main-menu__items--movil-visible {
+//         display: block;
+//     }
+
+//     .main-menu__items--movil-hide {
+//         display: none;
+//     }
+// }

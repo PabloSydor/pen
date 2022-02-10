@@ -1,0 +1,18 @@
+.l-dolmen {
+    display: grid;
+    grid-template-areas: "cabeza cabeza cabeza"
+               "izquierda . derecha";
+
+    &__cabeza {
+        grid-area: cabeza;
+    }
+
+    &__izquierda {
+        grid-area: izquierda;
+    }
+
+    &__derecha {
+        grid-area: derecha;
+    }
+
+}

@@ -1,0 +1,64 @@
+.c-button {
+    margin-left: 6px;
+    color: #0070ba;
+    font-family: "paypal";
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+    @include proporcion(8, 16);
+    border-radius: 25px;
+    border: 1px solid #0070ba;
+    background-color: white;
+
+    &--primary {
+        background-color: #0070ba;
+        color: white;
+
+        &:hover {
+            background-color: #005b97;
+        }
+      
+    }
+
+
+    &--tertiary {
+        margin-left: 0;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        color: #0070ba;
+        font-size: 16px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &--alternative {
+        margin-left: 0;
+        color: #0d3685;
+        background-color: #fdbb33;
+        @include proporcion(15, 84);
+        font-size: 14px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    // &--secundario {
+    //     background-color: white;
+    //     border: borderMaker(rgb(48, 48, 48));
+
+
+    //     &--peligroso {
+    //         border: borderMaker(rgb(221, 40, 55));
+
+    //     }
+
+
+    // }
+
+
+
+}

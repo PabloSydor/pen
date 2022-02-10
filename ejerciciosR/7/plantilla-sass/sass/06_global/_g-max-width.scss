@@ -1,0 +1,23 @@
+@each $name, $size in $sizes {
+    .g--max-width-#{$name} {
+        max-width: $size;
+    }
+}
+
+@each $name, $size in $sizes {
+    .g--max-width-#{$name}\@movil {
+        max-width: $size;
+    }
+}
+
+@each $name, $size in $sizes {
+    .g--max-width-#{$name}\@tablet {
+        max-width: $size;
+    }
+}
+
+@each $name, $size in $sizes {
+    .g--max-width-#{$name}\@ordenador {
+        max-width: $size;
+    }
+}
