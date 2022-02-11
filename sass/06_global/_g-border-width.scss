@@ -1,0 +1,18 @@
+$border-width-keys: getBorderWidthKeys();
+
+@each $key in $border-width-keys {
+    .g--border-width-#{$key} {
+        border-width: getBorderWidth($key);
+    }
+}
+
+@each $screen, $value in $breakpoints {
+    @media (min-width: $value) {
+
+        @each $key in $border-width-keys {
+            .g--border-width-#{$key}\@#{$screen} {
+                border-width: getBorderWidth($key);
+            }
+        }
+    }
+}

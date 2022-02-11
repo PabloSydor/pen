@@ -1,0 +1,20 @@
+$border-widths: (
+    "1": 1px,
+    "2": 4px,
+    "3": 8px,
+    "4": 16px,
+    "5": 32px);
+
+$breakpoints: (
+    "sm": 500px,
+    "md": 700px,
+    "lg": 900px,
+    "xl": 1024px);
+
+$paleta: (
+    "background-noticia": rgb(236, 236, 236),
+    "defecto": gray,
+    "exito": rgb(160, 255, 116),
+    "peligro": rgb(255, 116, 116),
+    "informacion": rgb(116, 188, 255),
+    "aviso": rgb(255, 187, 0));

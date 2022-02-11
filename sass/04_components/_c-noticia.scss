@@ -1,0 +1,102 @@
+.c-noticia {
+    width: 100%;
+    display: flex;
+    font-family: sans-serif;
+    margin: 12px 0;
+    box-shadow: 4px 10px 5px -6px #D9D9D9;
+
+
+    &--lg {
+        font-size: 18px;
+
+        .c-noticia__body {
+            padding: 48px 32px;
+        }
+    }
+
+    &--sm {
+        font-size: 14px;
+
+        .c-noticia__body {
+            padding: 12px 8px;
+        }
+    }
+
+    &--exito {
+        .c-noticia__recuadro {
+            background-color: getPaletColor("exito");
+        }
+
+        .c-noticia__titulo {
+            color: getPaletColor("exito");
+        }
+    }
+
+    &--peligro {
+        .c-noticia__recuadro {
+            background-color: getPaletColor("peligro");
+        }
+
+        .c-noticia__titulo {
+            color: getPaletColor("peligro");
+        }
+    }
+
+    &--informacion {
+        .c-noticia__recuadro {
+            background-color: getPaletColor("informacion");
+        }
+
+        .c-noticia__titulo {
+            color: getPaletColor("informacion");
+        }
+    }
+
+    &--aviso {
+        .c-noticia__recuadro {
+            background-color: getPaletColor("aviso");
+        }
+
+        .c-noticia__titulo {
+            color: getPaletColor("aviso");
+        }
+    }
+
+
+    &__recuadro {
+        width: 5px;
+        position: relative;
+        top: 0;
+        bottom: 0;
+        background-color: getPaletColor("defecto");
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__body {
+        width: 100%;
+        display: flex;
+        background-color: getPaletColor("background-color-noticia");
+        padding: 24px 16px;
+    }
+
+    &__titulo {
+        color: getPaletColor("defecto");
+        font-weight: bold;
+        margin-right: 8px;
+    }
+
+
+    &--animar {
+        transform: translateX(100vw);
+        transition: 1s ease-in;
+    }
+
+    &--hide {
+        display: none;
+    }
+
+
+}

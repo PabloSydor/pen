@@ -1,0 +1,4 @@
+@mixin cuadrado($lado) {
+    width: $lado;
+    height: $lado;
+}

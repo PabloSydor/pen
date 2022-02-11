@@ -1,0 +1,17 @@
+.c-cuadrado {
+    margin: 24px;
+    background-color: coral;
+    @include cuadrado(40px);
+    transition: transform 1s ease-in-out;
+
+    &:hover {
+        transform: scale(1.25, 1.25);
+    }
+
+    @media (min-width: 750px) {
+        & {
+            width: calc(40px + 2vw);
+            height: calc(40px + 2vw);
+        }
+    }
+}

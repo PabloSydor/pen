@@ -1,0 +1,7 @@
+.c-square {
+    background-color: coral;
+    @include cuadrado(100px);
+    margin: 12px;
+    border-color: black;
+    border-style: solid;
+}

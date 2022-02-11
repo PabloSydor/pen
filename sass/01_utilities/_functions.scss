@@ -1,0 +1,15 @@
+@function getBorderWidth($key) {
+  @return map-get($border-widths, $key);
+}
+
+@function getBorderWidthKeys() {
+  @return map-keys($border-widths);
+}
+
+@function getPaletColor($key) {
+  @return map-get($paleta, $key);
+}
+
+
+
+
