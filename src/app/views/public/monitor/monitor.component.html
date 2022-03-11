@@ -1,4 +1,4 @@
-<div class="w-100 px-4 contenedor" *ngIf="monitor !== undefined">
+<div class="w-100 px-4 contenedor" *ngIf="monitor !== undefined  ||  id !== null ">
   <div class="d-flex flex-row">
     <div class="content rounded shadow position-fixed cuerpo{{monitor.qr}} tarjeta" id="monitor">
       <div class="header{{monitor.qr}} d-flex align-items-center">
@@ -71,4 +71,9 @@
       </ul>
     </div>
   </div>
+</div>
+
+
+<div *ngIf="id === null">
+Hola
 </div>

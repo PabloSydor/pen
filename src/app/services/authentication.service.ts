@@ -17,7 +17,7 @@ const STORAGE_TOKEN = 'token';
 export class AuthenticationService {
   private oauthHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${environment.PUBLIC_JWT}`
+    'Authorization': `Bearer ${environment.LOCAL_JWT}`
   });
   private _token$: BehaviorSubject<IToken> = new BehaviorSubject(null);
 
