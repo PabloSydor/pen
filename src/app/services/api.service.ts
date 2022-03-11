@@ -48,12 +48,12 @@ export class ApiService {
     return this.$shttp.use('app').get(`/user/me`);
   }
 
-  public setLoc() {
-    this.$shttp.use('app').headers.reset();
-    this.$shttp.use('app').headers.set('Authorization', `Bearer ${environment.LOCAL_JWT}`);
+  public getMonitor(qr: any) {
+    // return this.$shttp.use('app').get(`/lfriend/search?qr=${qr}`);
+    return this.$shttp.use('app').get(`/open/local/getbyqr?qrs=${qr}`);
   }
 
-  public getMonitor(qr: any) {
+  public getRelacionados(qr: any) {
     return this.$shttp.use('app').get(`/lfriend/search?qr=${qr}`);
   }
 }

@@ -1,12 +1,13 @@
 import { HttpErrorResponse, JsonpClientBackend } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServerErrorService } from '@app/core/server-error.service';
 import { ApiService } from '@app/services/api.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerService } from '@paella-front/ngx-spinner';
-import { of } from 'rxjs';
-import { catchError, finalize, tap } from 'rxjs/operators';
+import { untilComponentDestroyed } from '@utils/rxjs';
+import { combineLatest, defer, of } from 'rxjs';
+import { catchError, debounceTime, finalize, map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments';
 
 @Component({
@@ -14,16 +15,17 @@ import { environment } from 'src/environments';
   templateUrl: './monitor.component.html',
   styleUrls: ['./monitor.component.scss']
 })
-export class MonitorComponent implements OnInit, AfterViewInit {
+export class MonitorComponent implements OnInit, OnDestroy {
 
   private interval;
   private interval2;
-  public monitor;
-  public relacionados;
+  public monitor = null;
+  public relacionados = null;
   private id;
   public avatar;
   private foto;
-  public oculto = false;
+  public oculto = true;
+
   private estilos = {
     header: [
       'background-color:aliceblue; color:#000000'
@@ -39,11 +41,9 @@ export class MonitorComponent implements OnInit, AfterViewInit {
     ]
   };
 
-
-
   constructor(
     private $api: ApiService,
-    private route: ActivatedRoute,
+    private aRoute: ActivatedRoute,
     private $spinner: SpinnerService,
     private router: Router,
     private $serverError: ServerErrorService,
@@ -57,22 +57,62 @@ export class MonitorComponent implements OnInit, AfterViewInit {
     config.showNavigationArrows = false;
   }
 
+  private getMonitor(): ReturnType<ApiService['getMonitor']> {
+    return defer(() => {
+      this.$spinner.show();
+      return this.$api.getMonitor(this.id);
+    }).pipe(
+      this.$serverError.catchErrorAndOpenModal(false, null),
+      tap((data) => {
+        this.monitor = data[0];
+        this.setFoto();
+      }),
+      finalize(() => {
+        this.$spinner.hide();
+      })
+    );
+  }
+
+  private getRelacionados(): ReturnType<ApiService['getRelacionados']> {
+    return defer(() => {
+      this.$spinner.show();
+      return this.$api.getRelacionados(this.id);
+    }).pipe(
+      this.$serverError.catchErrorAndOpenModal(false, null),
+      tap((data) => {
+        this.relacionados = data;
+        this.setFotos();
+      }),
+      finalize(() => {
+        this.$spinner.hide();
+      })
+    );
+  }
+
   ngOnInit() {
     this.$spinner.show();
-    this.$api.setLoc();
-    this.getId();
-    this.getDatos();
-    this.actualizarDatos();
-    this.intervalo1();
+    combineLatest([
+      this.aRoute.params,
+      this.aRoute.queryParams,
+    ]).pipe(
+      untilComponentDestroyed(this),
+      debounceTime(60),
+      map(([params, queryParams, ]) => ([params, queryParams])),
+      tap(([{ id }, ]) => {
+        this.id = null;
+
+        if (!id || id.trim() === '') {
+          throw new Error(`ActivatedRoute.params: Required param 'id' is not valid`);
+        }
+
+        this.id = id;
+      }),
+      switchMap(() => this.getMonitor()),
+    ).subscribe();
+    // this.getDatos();
   }
 
-  ngAfterViewInit() {
-    this.$spinner.show();
-  }
-
-  private getId() {
-    this.id = this.route.snapshot.paramMap.get('id');
-  }
+  ngOnDestroy(): void {}
 
   private asignarEstilos(qr, estilo) {
 
@@ -119,11 +159,14 @@ export class MonitorComponent implements OnInit, AfterViewInit {
   }
 
   private getDatos() {
-    this.$api.getMonitor(this.id).pipe(
+    if (this.id !== null) {
+      this.$api.getMonitor(this.id).pipe(
       tap((data: any) => {
-        this.monitor = data[data.length - 1].local;
+        // this.monitor = data[data.length - 1].local;
+        this.monitor = data[0];
+        console.log(data);
         this.relacionados = data;
-        this.relacionados.splice(this.relacionados.length - 1, 1);
+        // this.relacionados.splice(this.relacionados.length - 1, 1);
         this.setFoto();
         this.setFotos();
         setTimeout(() => {
@@ -137,9 +180,15 @@ export class MonitorComponent implements OnInit, AfterViewInit {
           });
         }, 10);
       }),
+      catchError((e) => {
+        console.log(e);
+        return of(null);
+      }),
       this.$serverError.catchErrorAndOpenModal(),
       finalize(() => {
         setTimeout(() => {
+          this.actualizarDatos();
+          this.intervalo1();
           if (this.relacionados.length === 0) {
             this.oculto = true;
             document.getElementById('monitor').classList.remove('tarjeta');
@@ -149,11 +198,12 @@ export class MonitorComponent implements OnInit, AfterViewInit {
         }, 100);
       })
     ).subscribe();
+    }
   }
 
   private setFoto() {
-    if (this.monitor.files.length !== 0) {
-      this.monitor.imgs = [];
+    this.monitor.imgs = [];
+    if (!!this.monitor.files) {
       this.monitor.files.forEach((el: any) => {
         this.foto = el;
         this.monitor.imgs.push({

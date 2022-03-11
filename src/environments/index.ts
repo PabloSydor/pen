@@ -14,7 +14,6 @@ export const environment = {
     app: 'https://tuturno.hipermercode.eu/api',
     oauth: 'https://oauthv2.hipermercode.eu/api'
   },
-  LOCAL_JWT: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NTU5NjExZDFjOWY0YzExYmVkZjhiN2YyMTI1NTY4MSIsImlzcyI6Imh0dHBzOi8vaGlwZXJtZXJjb2RlLmNvbSIsInN1YiI6ImxvY0BnbWFpbC5jb20iLCJleHAiOjIwODE3MDMwMzAsInNjb3BlIjpbImxvYyJdfQ.qGfuUbosa-WgZBrSvwrzxDzpLGLeVaHNlhiLM6kG34s'
 };
 
 /*

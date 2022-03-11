@@ -15,10 +15,6 @@ const STORAGE_TOKEN = 'token';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private oauthHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${environment.LOCAL_JWT}`
-  });
   private _token$: BehaviorSubject<IToken> = new BehaviorSubject(null);
 
   constructor(
@@ -117,7 +113,7 @@ export class AuthenticationService {
   }
 
   public login(username: string, password: string): Observable<unknown> {
-    return this.$shttp.post<any>(`/open/login`, { username, password }, { headers: this.oauthHeaders })
+    return this.$shttp.post<any>(`/open/login`, { username, password })
       .pipe(map((response: IToken) => {
         this.setToken(response);
         return response;
@@ -126,7 +122,7 @@ export class AuthenticationService {
 
   public inviteLogin(data: any): Observable<unknown> {
     const _data = { isAcceptedTerms: true, deviceId: data.deviceId || '' };
-    return this.$shttp.post<any>(`/open/login/anonymous/${data.hash}`, _data, { headers: this.oauthHeaders })
+    return this.$shttp.post<any>(`/open/login/anonymous/${data.hash}`, _data)
       .pipe(map((response: IToken) => {
         this.setToken(response);
         return response;
@@ -134,7 +130,7 @@ export class AuthenticationService {
   }
 
   public register(isAcceptedTerms = true, username: string, password: string, token: string): Observable<unknown> {
-    return this.$shttp.put<any>(`/open/invite/${token}`, { isAcceptedTerms, username, password }, { headers: this.oauthHeaders });
+    return this.$shttp.put<any>(`/open/invite/${token}`, { isAcceptedTerms, username, password });
   }
 
   public async logout(): Promise<void> {
