@@ -7,14 +7,15 @@ import {
   RouterModule,
   Routes,
 } from '@angular/router';
+import { MonitorComponent } from './views/public/monitor/monitor.component';
 import { publicRoutes } from './views/public/public.routing';
 
 
 const routes: Routes = [
   ...publicRoutes,
   /// Otherwise routes
-  { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: '**', redirectTo: '/', pathMatch: 'full' },
+  { path: '', component: MonitorComponent },
+  { path: '**', redirectTo: '/monitor', pathMatch: 'full' },
 ];
 
 const config: ExtraOptions = {};
