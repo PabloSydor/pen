@@ -9,6 +9,8 @@ import { untilComponentDestroyed } from '@utils/rxjs';
 import { combineLatest, defer, of } from 'rxjs';
 import { catchError, debounceTime, finalize, map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments';
+import { AuthenticationService } from '@app/services/authentication.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-monitor',
@@ -20,11 +22,12 @@ export class MonitorComponent implements OnInit, OnDestroy {
   private interval;
   private interval2;
   public monitor = null;
-  public relacionados = null;
+  public relacionados = [];
   private id;
   public avatar;
   private foto;
-  public oculto = true;
+  public oculto = false;
+  public response = null;
 
   private estilos = {
     header: [
@@ -43,11 +46,13 @@ export class MonitorComponent implements OnInit, OnDestroy {
 
   constructor(
     private $api: ApiService,
+    private $auth: AuthenticationService,
     private aRoute: ActivatedRoute,
     private $spinner: SpinnerService,
     private router: Router,
     private $serverError: ServerErrorService,
     config: NgbCarouselConfig,
+    protected sanitizer: DomSanitizer
   ) {
     config.interval = 5000;
     config.wrap = true;
@@ -57,21 +62,24 @@ export class MonitorComponent implements OnInit, OnDestroy {
     config.showNavigationArrows = false;
   }
 
-  private getMonitor(): ReturnType<ApiService['getMonitor']> {
-    return defer(() => {
-      this.$spinner.show();
-      return this.$api.getMonitor(this.id);
-    }).pipe(
-      this.$serverError.catchErrorAndOpenModal(false, null),
-      tap((data) => {
-        this.monitor = data[0];
-        this.setFoto();
-      }),
-      finalize(() => {
-        this.$spinner.hide();
-      })
-    );
-  }
+  // private getMonitor(): ReturnType<ApiService['getMonitor']> {
+  //   return defer(() => {
+  //     this.$spinner.show();
+  //     return this.$api.getMonitor(this.id);
+  //   }).pipe(
+  //     this.$serverError.catchErrorAndOpenModal(false, null),
+  //     tap((data) => {
+  //       console.log(data)
+  //       this.monitor = data[0];
+  //       console.log(this.monitor)
+  //       this.setFoto();
+  //       this.getQR();
+  //     }),
+  //     finalize(() => {
+  //       this.$spinner.hide();
+  //     })
+  //   );
+  // }
 
   private getRelacionados(): ReturnType<ApiService['getRelacionados']> {
     return defer(() => {
@@ -80,8 +88,12 @@ export class MonitorComponent implements OnInit, OnDestroy {
     }).pipe(
       this.$serverError.catchErrorAndOpenModal(false, null),
       tap((data) => {
-        this.relacionados = data;
-        this.setFotos();
+        console.log(data)
+        this.monitor = data;
+        this.relacionados = data.related;
+        console.log(this.relacionados);
+        this.getQR();
+        // this.setFotos();
       }),
       finalize(() => {
         this.$spinner.hide();
@@ -90,6 +102,7 @@ export class MonitorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.animacionIn();
     this.$spinner.show();
     combineLatest([
       this.aRoute.params,
@@ -107,7 +120,7 @@ export class MonitorComponent implements OnInit, OnDestroy {
 
         this.id = id;
       }),
-      switchMap(() => this.getMonitor()),
+      switchMap(() => this.getRelacionados()),
     ).subscribe();
     // this.getDatos();
   }
@@ -158,78 +171,78 @@ export class MonitorComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getDatos() {
-    if (this.id !== null) {
-      this.$api.getMonitor(this.id).pipe(
-      tap((data: any) => {
-        // this.monitor = data[data.length - 1].local;
-        this.monitor = data[0];
-        console.log(data);
-        this.relacionados = data;
-        // this.relacionados.splice(this.relacionados.length - 1, 1);
-        this.setFoto();
-        this.setFotos();
-        setTimeout(() => {
-          if (this.monitor.monitorStyle === null) {
-            this.asignarEstilos(this.monitor.qr, null);
-          } else {
-            this.asignarEstilos(this.monitor.qr, this.monitor.monitorStyle.toString());
-          }
-          this.relacionados.forEach((el: any) => {
-            this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
-          });
-        }, 10);
-      }),
-      catchError((e) => {
-        console.log(e);
-        return of(null);
-      }),
-      this.$serverError.catchErrorAndOpenModal(),
-      finalize(() => {
-        setTimeout(() => {
-          this.actualizarDatos();
-          this.intervalo1();
-          if (this.relacionados.length === 0) {
-            this.oculto = true;
-            document.getElementById('monitor').classList.remove('tarjeta');
-            document.getElementById('monitor').classList.add('monitor');
-          }
-          this.$spinner.hide();
-        }, 100);
-      })
-    ).subscribe();
-    }
-  }
+  // private getDatos() {
+  //   if (this.id !== null) {
+  //     this.$api.getMonitor(this.id).pipe(
+  //     tap((data: any) => {
+  //       // this.monitor = data[data.length - 1].local;
+  //       this.monitor = data[0];
+  //       console.log(data);
+  //       this.relacionados = data;
+  //       // this.relacionados.splice(this.relacionados.length - 1, 1);
+  //       this.setFoto();
+  //       this.setFotos();
+  //       setTimeout(() => {
+  //         if (this.monitor.monitorStyle === null) {
+  //           this.asignarEstilos(this.monitor.qr, null);
+  //         } else {
+  //           this.asignarEstilos(this.monitor.qr, this.monitor.monitorStyle.toString());
+  //         }
+  //         this.relacionados.forEach((el: any) => {
+  //           this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
+  //         });
+  //       }, 10);
+  //     }),
+  //     catchError((e) => {
+  //       console.log(e);
+  //       return of(null);
+  //     }),
+  //     this.$serverError.catchErrorAndOpenModal(),
+  //     finalize(() => {
+  //       setTimeout(() => {
+  //         this.actualizarDatos();
+  //         this.intervalo1();
+  //         if (this.relacionados.length === 0) {
+  //           this.oculto = true;
+  //           document.getElementById('monitor').classList.remove('tarjeta');
+  //           document.getElementById('monitor').classList.add('monitor');
+  //         }
+  //         this.$spinner.hide();
+  //       }, 100);
+  //     })
+  //   ).subscribe();
+  //   }
+  // }
 
-  private setFoto() {
-    this.monitor.imgs = [];
-    if (!!this.monitor.files) {
-      this.monitor.files.forEach((el: any) => {
-        this.foto = el;
-        this.monitor.imgs.push({
-          url: `${environment.domain}img` + this.foto.path,
-          id: this.foto.idFile
-        });
-      });
-    } else {
-      this.monitor.imgs = [];
-    }
-  }
+  // private setFoto() {
+  //   this.monitor.imgs = [];
+  //   if (!!this.monitor.files) {
+  //     this.monitor.files.forEach((el: any) => {
+  //       this.foto = el;
+  //       this.monitor.imgs.push({
+  //         url: `${environment.domain}img` + this.foto.path,
+  //         id: this.foto.idFile
+  //       });
+  //     });
+  //   } else {
+  //     this.monitor.imgs = [];
+  //   }
+  // }
 
-  private setFotos() {
-    this.relacionados.forEach((r: any) => {
-      if (r.idRelatedLocal.files.length !== 0) {
-        r.imgs = [];
-        r.idRelatedLocal.files.forEach((f: any) => {
-          this.foto = f;
-          r.imgs.push({
-            url: `${environment.domain}img` + this.foto.path,
-            id: this.foto.idFile
-          });
-        });
-      }
-    });
-  }
+  // private setFotos() {
+  //   this.relacionados.forEach((r: any) => {
+  //     if (r.idRelatedLocal.files.length !== 0) {
+  //       r.imgs = [];
+  //       r.idRelatedLocal.files.forEach((f: any) => {
+  //         this.foto = f;
+  //         r.imgs.push({
+  //           url: `${environment.domain}img` + this.foto.path,
+  //           id: this.foto.idFile
+  //         });
+  //       });
+  //     }
+  //   });
+  // }
 
   private animacion() {
     if (this.relacionados !== undefined) {
@@ -269,280 +282,318 @@ export class MonitorComponent implements OnInit, OnDestroy {
     document.getElementById('info').classList.remove('turnoGrande');
   }
 
-  private actualizarDatos() {
-    const intervalo = setInterval(() => {
-      if (location.href.toString() === `https://tuturno.hipermercode.eu/dashboard/local/${this.id}`) {
-        clearInterval(intervalo);
-        return;
-      } else {
-        this.$api.getMonitor(this.id).pipe(
-          tap((data: any) => {
-            // tslint:disable-next-line: prefer-const
-            let mon = this.monitor;
-            // delete mon.imgs;
-            const nuevDat = data[data.length - 1].local;
-            // console.log(mon);
-            if (mon.curTurn !== nuevDat.curTurn) {
-              this.monitor.curTurn = nuevDat.curTurn;
-              if (!this.oculto) {
-                document.getElementById('carrusel').classList.add('desaparecer');
-                document.getElementById('info').classList.add('centrar');
-                const audio = new Audio();
-                audio.src = 'assets/sounds/campanas.mp3';
-                audio.load();
-                audio.play();
-                setTimeout(() => {
-                  document.getElementById('carrusel').classList.remove('desaparecer');
-                  document.getElementById('info').classList.remove('centrar');
-                }, 3000);
-              } else {
-                document.getElementById('carrusel').classList.add('desaparecer');
-                document.getElementById('info').classList.add('centrarGrande');
-                const audio = new Audio();
-                audio.src = 'assets/sounds/campanas.mp3';
-                audio.load();
-                audio.play();
-                setTimeout(() => {
-                  document.getElementById('carrusel').classList.remove('desaparecer');
-                  document.getElementById('info').classList.remove('centrarGrande');
-                }, 3000);
-              }
-            }
+  // private actualizarDatos() {
+  //   const intervalo = setInterval(() => {
+  //     if (location.href.toString() === `https://tuturno.hipermercode.eu/dashboard/local/${this.id}`) {
+  //       clearInterval(intervalo);
+  //       return;
+  //     } else {
+  //       this.$api.getMonitor(this.id).pipe(
+  //         tap((data: any) => {
+  //           // tslint:disable-next-line: prefer-const
+  //           let mon = this.monitor;
+  //           // delete mon.imgs;
+  //           const nuevDat = data[data.length - 1].local;
+  //           // console.log(mon);
+  //           if (mon.curTurn !== nuevDat.curTurn) {
+  //             this.monitor.curTurn = nuevDat.curTurn;
+  //             if (!this.oculto) {
+  //               document.getElementById('carrusel').classList.add('desaparecer');
+  //               document.getElementById('info').classList.add('centrar');
+  //               const audio = new Audio();
+  //               audio.src = 'assets/sounds/campanas.mp3';
+  //               audio.load();
+  //               audio.play();
+  //               setTimeout(() => {
+  //                 document.getElementById('carrusel').classList.remove('desaparecer');
+  //                 document.getElementById('info').classList.remove('centrar');
+  //               }, 3000);
+  //             } else {
+  //               document.getElementById('carrusel').classList.add('desaparecer');
+  //               document.getElementById('info').classList.add('centrarGrande');
+  //               const audio = new Audio();
+  //               audio.src = 'assets/sounds/campanas.mp3';
+  //               audio.load();
+  //               audio.play();
+  //               setTimeout(() => {
+  //                 document.getElementById('carrusel').classList.remove('desaparecer');
+  //                 document.getElementById('info').classList.remove('centrarGrande');
+  //               }, 3000);
+  //             }
+  //           }
 
-            if (JSON.stringify(mon.files) !== JSON.stringify(nuevDat.files)) {
-              this.monitor.files = nuevDat.files;
-              this.setFoto();
-            }
+  //           if (JSON.stringify(mon.files) !== JSON.stringify(nuevDat.files)) {
+  //             this.monitor.files = nuevDat.files;
+  //             this.setFoto();
+  //           }
 
-            if (mon.monitorStyle !== nuevDat.monitorStyle) {
-              this.monitor.monitorStyle = nuevDat.monitorStyle;
-              setTimeout(() => {
-                if (this.monitor.monitorStyle === null) {
-                  this.asignarEstilos(this.monitor.qr, null);
-                } else {
-                  this.asignarEstilos(this.monitor.qr, this.monitor.monitorStyle.toString());
-                }
-              }, 10);
-            }
+  //           if (mon.monitorStyle !== nuevDat.monitorStyle) {
+  //             this.monitor.monitorStyle = nuevDat.monitorStyle;
+  //             setTimeout(() => {
+  //               if (this.monitor.monitorStyle === null) {
+  //                 this.asignarEstilos(this.monitor.qr, null);
+  //               } else {
+  //                 this.asignarEstilos(this.monitor.qr, this.monitor.monitorStyle.toString());
+  //               }
+  //             }, 10);
+  //           }
 
-            if (mon.name !== nuevDat.name) {
-              this.monitor.name = nuevDat.name;
-            }
+  //           if (mon.name !== nuevDat.name) {
+  //             this.monitor.name = nuevDat.name;
+  //           }
 
-            if (data.length <= 1) {
-              if (!this.oculto) {
-                this.ocultar();
-              }
-            } else if (data.length > 1) {
-              if (this.oculto) {
-                this.mostrar();
-              }
-            }
+  //           if (data.length <= 1) {
+  //             if (!this.oculto) {
+  //               this.ocultar();
+  //             }
+  //           } else if (data.length > 1) {
+  //             if (this.oculto) {
+  //               this.mostrar();
+  //             }
+  //           }
 
-            if (!this.oculto) {
-              const nuevRel = data;
-              nuevRel.splice(data.length - 1, 1);
-              if (this.relacionados.length === 0) {
-                if (data.length > 1) {
-                  this.relacionados = data;
-                  this.relacionados.splice(this.relacionados.length - 1);
-                  setTimeout(() => {
-                    this.relacionados.forEach((el: any) => {
-                      this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
-                    });
-                  }, 10);
-                  this.setFotos();
-                } else {
-                  this.relacionados = [];
-                }
-              } else {
-                if (this.relacionados.length !== (data.length - 1)) {
-                  this.relacionados.forEach((r, ind) => {
-                    if (r.id !== nuevRel[ind].id) {
-                      r = nuevRel[ind];
-                      this.setFotos();
-                      this.asignarEstilos(r.idRelatedLocal.qr, r.idRelatedLocal.monitorStyle);
-                    } else {
-                      if (r.idRelatedLocal.curTurn !== nuevRel[ind].idRelatedLocal.curTurn) {
-                        r.idRelatedLocal.curTurn = nuevRel[ind].idRelatedLocal.curTurn;
-                        document.getElementsByClassName('tarjetita')[ind].classList.add('desaparecer');
-                        document.getElementsByClassName('infoTarj')[ind].classList.add('centrarPequeño');
-                        document.getElementsByClassName('posNum')[ind].classList.add('centrarPosicion');
-                        const audio = new Audio();
-                        audio.src = 'assets/sounds/campana.mp3';
-                        audio.load();
-                        audio.play();
-                        setTimeout(() => {
-                          document.getElementsByClassName('tarjetita')[ind].classList.remove('desaparecer');
-                          document.getElementsByClassName('infoTarj')[ind].classList.remove('centrarPequeño');
-                          document.getElementsByClassName('posNum')[ind].classList.remove('centrarPosicion');
-                        }, 3000);
-                      }
-                      if (r.idRelatedLocal.name !== nuevRel[ind].idRelatedLocal.name) {
-                        r.idRelatedLocal.name = nuevRel[ind].idRelatedLocal.name;
-                      }
-                      if (JSON.stringify(r.idRelatedLocal.files) !== JSON.stringify(nuevRel[ind].idRelatedLocal.files)) {
-                        r.idRelatedLocal.files = nuevRel.idRelatedLocal.files;
-                        this.setFotos();
-                      }
-                      if (r.idRelatedLocal.monitorStyle !== nuevRel[ind].idRelatedLocal.monitorStyle) {
-                        r.idRelatedLocal.monitorStyle = nuevRel[ind].idRelatedLocal.monitorStyle;
-                        this.asignarEstilos(r.idRelatedLocal.qr, r.idRelatedLocal.monitorStyle);
-                      }
-                    }
-                  });
-                } else {
-                  this.relacionados = nuevRel;
-                  setTimeout(() => {
-                    this.relacionados.forEach((el: any) => {
-                      this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
-                    });
-                  }, 10);
-                  this.setFotos();
-                }
-              }
-            } else {
-              if (data.length > 1) {
-                this.relacionados = data;
-                this.relacionados.splice(this.relacionados.length - 1);
-                setTimeout(() => {
-                  this.relacionados.forEach((el: any) => {
-                    this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
-                  });
-                }, 10);
-                this.setFotos();
-              } else if (data.length < 2) {
-                this.relacionados = [];
-              }
-            }
-            // if (JSON.stringify(mon) !== JSON.stringify(nuevDat)) {
-            //   // if (this.monitor.curTurn !== nuevDat.curTurn) {
-            //   //    añadir animacion
-            //   // }
-            //   this.monitor = nuevDat;
-            //   if (this.monitor.monitorStyle === null) {
-            //     this.asignarEstilos(this.monitor.qr, null);
-            //   } else {
-            //     this.asignarEstilos(this.monitor.qr, this.monitor.monitorStyle.toString());
-            //   }
-            // }
+  //           if (!this.oculto) {
+  //             const nuevRel = data;
+  //             nuevRel.splice(data.length - 1, 1);
+  //             if (this.relacionados.length === 0) {
+  //               if (data.length > 1) {
+  //                 this.relacionados = data;
+  //                 this.relacionados.splice(this.relacionados.length - 1);
+  //                 setTimeout(() => {
+  //                   this.relacionados.forEach((el: any) => {
+  //                     this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
+  //                   });
+  //                 }, 10);
+  //                 this.setFotos();
+  //               } else {
+  //                 this.relacionados = [];
+  //               }
+  //             } else {
+  //               if (this.relacionados.length !== (data.length - 1)) {
+  //                 this.relacionados.forEach((r, ind) => {
+  //                   if (r.id !== nuevRel[ind].id) {
+  //                     r = nuevRel[ind];
+  //                     this.setFotos();
+  //                     this.asignarEstilos(r.idRelatedLocal.qr, r.idRelatedLocal.monitorStyle);
+  //                   } else {
+  //                     if (r.idRelatedLocal.curTurn !== nuevRel[ind].idRelatedLocal.curTurn) {
+  //                       r.idRelatedLocal.curTurn = nuevRel[ind].idRelatedLocal.curTurn;
+  //                       document.getElementsByClassName('tarjetita')[ind].classList.add('desaparecer');
+  //                       document.getElementsByClassName('infoTarj')[ind].classList.add('centrarPequeño');
+  //                       document.getElementsByClassName('posNum')[ind].classList.add('centrarPosicion');
+  //                       const audio = new Audio();
+  //                       audio.src = 'assets/sounds/campana.mp3';
+  //                       audio.load();
+  //                       audio.play();
+  //                       setTimeout(() => {
+  //                         document.getElementsByClassName('tarjetita')[ind].classList.remove('desaparecer');
+  //                         document.getElementsByClassName('infoTarj')[ind].classList.remove('centrarPequeño');
+  //                         document.getElementsByClassName('posNum')[ind].classList.remove('centrarPosicion');
+  //                       }, 3000);
+  //                     }
+  //                     if (r.idRelatedLocal.name !== nuevRel[ind].idRelatedLocal.name) {
+  //                       r.idRelatedLocal.name = nuevRel[ind].idRelatedLocal.name;
+  //                     }
+  //                     if (JSON.stringify(r.idRelatedLocal.files) !== JSON.stringify(nuevRel[ind].idRelatedLocal.files)) {
+  //                       r.idRelatedLocal.files = nuevRel.idRelatedLocal.files;
+  //                       this.setFotos();
+  //                     }
+  //                     if (r.idRelatedLocal.monitorStyle !== nuevRel[ind].idRelatedLocal.monitorStyle) {
+  //                       r.idRelatedLocal.monitorStyle = nuevRel[ind].idRelatedLocal.monitorStyle;
+  //                       this.asignarEstilos(r.idRelatedLocal.qr, r.idRelatedLocal.monitorStyle);
+  //                     }
+  //                   }
+  //                 });
+  //               } else {
+  //                 this.relacionados = nuevRel;
+  //                 setTimeout(() => {
+  //                   this.relacionados.forEach((el: any) => {
+  //                     this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
+  //                   });
+  //                 }, 10);
+  //                 this.setFotos();
+  //               }
+  //             }
+  //           } else {
+  //             if (data.length > 1) {
+  //               this.relacionados = data;
+  //               this.relacionados.splice(this.relacionados.length - 1);
+  //               setTimeout(() => {
+  //                 this.relacionados.forEach((el: any) => {
+  //                   this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
+  //                 });
+  //               }, 10);
+  //               this.setFotos();
+  //             } else if (data.length < 2) {
+  //               this.relacionados = [];
+  //             }
+  //           }
+  //           // if (JSON.stringify(mon) !== JSON.stringify(nuevDat)) {
+  //           //   // if (this.monitor.curTurn !== nuevDat.curTurn) {
+  //           //   //    añadir animacion
+  //           //   // }
+  //           //   this.monitor = nuevDat;
+  //           //   if (this.monitor.monitorStyle === null) {
+  //           //     this.asignarEstilos(this.monitor.qr, null);
+  //           //   } else {
+  //           //     this.asignarEstilos(this.monitor.qr, this.monitor.monitorStyle.toString());
+  //           //   }
+  //           // }
 
-            // if (!this.oculto) {
-            //   if (this.relacionados.length === 0) {
-            //     if (data.length > 1) {
-            //       this.relacionados = data;
-            //       this.relacionados.splice(this.relacionados.length - 1);
-            //       setTimeout(() => {
-            //         this.relacionados.forEach((el: any) => {
-            //           this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
-            //         });
-            //       }, 10);
-            //       this.setFotos();
-            //     } else if (data.length < 2) {
-            //       this.relacionados = [];
-            //     }
-            //   } else {
-            //     if (this.relacionados.length !== (data.length - 1)) {
-            //       this.relacionados = data;
-            //       this.relacionados.splice(this.relacionados.length - 1);
-            //       setTimeout(() => {
-            //         this.relacionados.forEach((el: any) => {
-            //           this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
-            //         });
-            //       }, 10);
-            //       this.setFotos();
-            //     } else {
-            //       this.relacionados.forEach((rel: any, ind: any) => {
-            //         if (JSON.stringify(rel.idRelatedLocal) !== JSON.stringify(data[ind].idRelatedLocal)) {
-            //           if (rel.idRelatedLocal.curTurn !== data[ind].idRelatedLocal.curTurn) {
-            //             document.getElementsByClassName('tarjetita')[ind].classList.add('desaparecer');
-            //             document.getElementsByClassName('infoTarj')[ind].classList.add('centrarPequeño');
-            //             document.getElementsByClassName('posNum')[ind].classList.add('centrarPosicion');
-            //             const audio = new Audio();
-            //             audio.src = 'assets/sounds/campana.mp3';
-            //             audio.load();
-            //             audio.play();
-            //             setTimeout(() => {
-            //               document.getElementsByClassName('tarjetita')[ind].classList.remove('desaparecer');
-            //               document.getElementsByClassName('infoTarj')[ind].classList.remove('centrarPequeño');
-            //               document.getElementsByClassName('posNum')[ind].classList.remove('centrarPosicion');
-            //             }, 3000);
-            //           }
-            //           this.relacionados[ind].idRelatedLocal = data[ind].idRelatedLocal;
-            //           setTimeout(() => {
-            //             this.relacionados.forEach((el: any) => {
-            //               this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
-            //             });
-            //           }, 10);
-            //           this.setFotos();
-            //         }
-            //       });
-            //     }
+  //           // if (!this.oculto) {
+  //           //   if (this.relacionados.length === 0) {
+  //           //     if (data.length > 1) {
+  //           //       this.relacionados = data;
+  //           //       this.relacionados.splice(this.relacionados.length - 1);
+  //           //       setTimeout(() => {
+  //           //         this.relacionados.forEach((el: any) => {
+  //           //           this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
+  //           //         });
+  //           //       }, 10);
+  //           //       this.setFotos();
+  //           //     } else if (data.length < 2) {
+  //           //       this.relacionados = [];
+  //           //     }
+  //           //   } else {
+  //           //     if (this.relacionados.length !== (data.length - 1)) {
+  //           //       this.relacionados = data;
+  //           //       this.relacionados.splice(this.relacionados.length - 1);
+  //           //       setTimeout(() => {
+  //           //         this.relacionados.forEach((el: any) => {
+  //           //           this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
+  //           //         });
+  //           //       }, 10);
+  //           //       this.setFotos();
+  //           //     } else {
+  //           //       this.relacionados.forEach((rel: any, ind: any) => {
+  //           //         if (JSON.stringify(rel.idRelatedLocal) !== JSON.stringify(data[ind].idRelatedLocal)) {
+  //           //           if (rel.idRelatedLocal.curTurn !== data[ind].idRelatedLocal.curTurn) {
+  //           //             document.getElementsByClassName('tarjetita')[ind].classList.add('desaparecer');
+  //           //             document.getElementsByClassName('infoTarj')[ind].classList.add('centrarPequeño');
+  //           //             document.getElementsByClassName('posNum')[ind].classList.add('centrarPosicion');
+  //           //             const audio = new Audio();
+  //           //             audio.src = 'assets/sounds/campana.mp3';
+  //           //             audio.load();
+  //           //             audio.play();
+  //           //             setTimeout(() => {
+  //           //               document.getElementsByClassName('tarjetita')[ind].classList.remove('desaparecer');
+  //           //               document.getElementsByClassName('infoTarj')[ind].classList.remove('centrarPequeño');
+  //           //               document.getElementsByClassName('posNum')[ind].classList.remove('centrarPosicion');
+  //           //             }, 3000);
+  //           //           }
+  //           //           this.relacionados[ind].idRelatedLocal = data[ind].idRelatedLocal;
+  //           //           setTimeout(() => {
+  //           //             this.relacionados.forEach((el: any) => {
+  //           //               this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
+  //           //             });
+  //           //           }, 10);
+  //           //           this.setFotos();
+  //           //         }
+  //           //       });
+  //           //     }
 
-            //   }
-            // } else {
-            //   if (data.length > 1) {
-            //     this.relacionados = data;
-            //     this.relacionados.splice(this.relacionados.length - 1);
-            //     setTimeout(() => {
-            //       this.relacionados.forEach((el: any) => {
-            //         this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
-            //       });
-            //     }, 10);
-            //     this.setFotos();
-            //   } else if (data.length < 2) {
-            //     this.relacionados = [];
-            //   }
+  //           //   }
+  //           // } else {
+  //           //   if (data.length > 1) {
+  //           //     this.relacionados = data;
+  //           //     this.relacionados.splice(this.relacionados.length - 1);
+  //           //     setTimeout(() => {
+  //           //       this.relacionados.forEach((el: any) => {
+  //           //         this.asignarEstilos(el.idRelatedLocal.qr, el.idRelatedLocal.monitorStyle);
+  //           //       });
+  //           //     }, 10);
+  //           //     this.setFotos();
+  //           //   } else if (data.length < 2) {
+  //           //     this.relacionados = [];
+  //           //   }
 
-            // }
-          }),
-          this.$serverError.catchErrorAndOpenModal(),
-          finalize(() => this.setFoto())
-        ).subscribe();
-      }
-    }, 15000);
+  //           // }
+  //         }),
+  //         this.$serverError.catchErrorAndOpenModal(),
+  //         finalize(() => this.setFoto())
+  //       ).subscribe();
+  //     }
+  //   }, 15000);
+  // }
+
+  // intervalo1(): void {
+  //   let i = 1;
+  //   this.interval = setInterval(() => {
+  //     window.scrollBy({
+  //       top: 3,
+  //       behavior: 'smooth'
+  //     });
+  //     // console.log(window.scrollY);
+  //     if (window.scrollY === i) {
+  //       clearInterval(this.interval);
+  //       this.intervalo2();
+  //     } else {
+  //       i = window.scrollY;
+  //     }
+  //     if (location.href.toString() === `https://tuturno.hipermercode.eu/dashboard/local/${this.id}`) {
+  //       clearInterval(this.interval);
+  //       return;
+  //     }
+
+  //   }, 200);
+  // }
+
+  // intervalo2(): void {
+  //   let i = 0;
+  //   this.interval2 = setInterval(() => {
+  //     window.scrollBy({
+  //       top: -3,
+  //       behavior: 'smooth'
+  //     });
+  //     if (window.scrollY === 0) {
+  //       clearInterval(this.interval2);
+  //       this.intervalo1();
+  //     } else {
+  //       i = window.scrollY;
+  //     }
+  //     if (location.href.toString() === `https://tuturno.hipermercode.eu/dashboard/local/${this.id}`) {
+  //       clearInterval(this.interval2);
+  //       return;
+  //     }
+  //   }, 200);
+  // }
+
+  private getQR() {
+    const data = `https://tuturno.hipermercode.eu/api/open/local/getbyqr?qrs=${this.monitor.qr}`;
+
+    this.$auth.generateQr({ text: data, format: 'png', size: '100' }).pipe(
+      tap((rsp) => {
+        const objectURL = URL.createObjectURL(rsp);
+        this.response = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        console.log(this.response);
+      })
+    ).subscribe();
   }
 
-  intervalo1(): void {
-    let i = 1;
-    this.interval = setInterval(() => {
-      window.scrollBy({
-        top: 3,
-        behavior: 'smooth'
-      });
-      // console.log(window.scrollY);
-      if (window.scrollY === i) {
-        clearInterval(this.interval);
-        this.intervalo2();
-      } else {
-        i = window.scrollY;
-      }
-      if (location.href.toString() === `https://tuturno.hipermercode.eu/dashboard/local/${this.id}`) {
-        clearInterval(this.interval);
-        return;
-      }
-
-    }, 200);
+  private animacionIn() {
+      // setInterval(() => {
+      //   if (this.oculto === true) {
+      //     this.desactivar();
+      //   } else {
+      //     this.activar();
+      //   }
+      // }, 16000);
+      console.log("hey")
   }
 
-  intervalo2(): void {
-    let i = 0;
-    this.interval2 = setInterval(() => {
-      window.scrollBy({
-        top: -3,
-        behavior: 'smooth'
-      });
-      if (window.scrollY === 0) {
-        clearInterval(this.interval2);
-        this.intervalo1();
-      } else {
-        i = window.scrollY;
-      }
-      if (location.href.toString() === `https://tuturno.hipermercode.eu/dashboard/local/${this.id}`) {
-        clearInterval(this.interval2);
-        return;
-      }
-    }, 200);
+  public activar() {
+    this.oculto = true;
+    document.getElementById('right').classList.add('l-fill');
+    document.getElementById('right').classList.remove('empt');
+    document.getElementById('left').classList.add('desaparece');
   }
+
+  public desactivar() {
+    this.oculto = false;
+    document.getElementById('right').classList.add('empt');
+    document.getElementById('right').classList.remove('l-fill');
+    document.getElementById('left').classList.remove('desaparece');
+  }
+
 
 }

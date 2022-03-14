@@ -152,4 +152,9 @@ export class AuthenticationService {
   public reenviarInvitacion(data: { id: number }): Observable<unknown> {
     return this.$shttp.post(`/admin/invite/forward`, data);
   }
+
+  public generateQr(data: any) {
+    const url = `open/text`;
+    return this.$$shttp.use('codigo').post(url, data, { responseType: 'blob'});
+  }
 }

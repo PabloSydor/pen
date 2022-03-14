@@ -12,11 +12,15 @@ const config: IRootConfig = {
     app: {
       url: environment.server.app,
       isDefault: true,
-      headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NTU5NjExZDFjOWY0YzExYmVkZjhiN2YyMTI1NTY4MSIsImlzcyI6Imh0dHBzOi8vaGlwZXJtZXJjb2RlLmNvbSIsInN1YiI6ImxvY0BnbWFpbC5jb20iLCJleHAiOjIwODE3MDMwMzAsInNjb3BlIjpbImxvYyJdfQ.qGfuUbosa-WgZBrSvwrzxDzpLGLeVaHNlhiLM6kG34s' }
+      headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NTU5NjExZDFjOWY0YzExYmVkZjhiN2YyMTI1NTY4MSIsImlzcyI6Imh0dHBzOi8vaGlwZXJtZXJjb2RlLmNvbSIsInN1YiI6ImxvY0BnbWFpbC5jb20iLCJleHAiOjIwODE3MDMwMzAsInNjb3BlIjpbImJhc2ljIiwibG9jYWwiXX0.7Cx6TPjSMUP3dIR-DiAttD_nXxHHBcVanh5z5z57Lis' }
     },
     oauth: {
       url: environment.server.oauth,
       headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NTU5NjExZDFjOWY0YzExYmVkZjhiN2YyMTI1NTY4MSIsImlzcyI6Imh0dHBzOi8vaGlwZXJtZXJjb2RlLmNvbSIsInN1YiI6ImxvY0BnbWFpbC5jb20iLCJleHAiOjIwODE3MDMwMzAsInNjb3BlIjpbImxvYyJdfQ.qGfuUbosa-WgZBrSvwrzxDzpLGLeVaHNlhiLM6kG34s' }
+    },
+    codigo: {
+      url: environment.codigo,
+      headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NTU5NjExZDFjOWY0YzExYmVkZjhiN2YyMTI1NTY4MSIsImlzcyI6Imh0dHBzOi8vaGlwZXJtZXJjb2RlLmNvbSIsInN1YiI6ImxvY0BnbWFpbC5jb20iLCJleHAiOjIwODE3MDMwMzAsInNjb3BlIjpbImJhc2ljIiwibG9jYWwiXX0.7Cx6TPjSMUP3dIR-DiAttD_nXxHHBcVanh5z5z57Lis' }
     }
   }
 };

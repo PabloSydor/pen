@@ -1,79 +1,176 @@
-<div class="w-100 px-4 contenedor" *ngIf="!!monitor">
-  <div class="d-flex flex-row">
-    <div class="content rounded shadow position-fixed cuerpo{{monitor.qr}}" [ngClass]="(!oculto) ? 'tarjeta' : 'monitor'" id="monitor">
-      <div class="header{{monitor.qr}} d-flex align-items-center">
-        <div class="position-absolute">
-          <button class="btn" *ngIf="!oculto" (click)="oculto = !oculto">
-            <i class="fas fa-expand fa-2x"></i>
-          </button>
-          <button class="btn" *ngIf="oculto" (click)="oculto = !oculto">
-            <i class="fas fa-compress fa-2x"></i>
-          </button>
-        </div>
-        <div class="d-flex align-items-center mx-auto">
-          <div class="tituloMonitor mx-auto">
-            <p class="textoMonitor">{{ monitor.name }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="d-flex"  id="carrusel">
-        <img *ngIf="monitor.imgs !== []" [src]="avatar ? avatar : 'assets/images/icono.jpg'" class="imagenMonitor mx-auto w-100">
-        <ngb-carousel *ngIf="monitor.imgs" class="w-100">
-          <ng-template ngbSlide *ngFor="let img of monitor.imgs" class="w-100">
-            <div class="picsum-img-wrapper d-flex w-100" [id]="'slide-' + img.id">
-              <img [src]="img.url" class="imagenMonitor mx-auto w-100">
-            </div>
-          </ng-template>
-        </ngb-carousel>
-      </div>
-      <div class="body">
-        <div class="d-flex flex-column">
-          <div class="d-flex mx-auto">
-            <button class="btn turnoMonitor rounded-circle textoCuerpo texto{{monitor.qr}} mb-0
-            mx-auto d-flex align-items-center justify-content-center p-0" id="info">
-              {{ monitor.currentTurn }}
+<!-- <div *ngIf="1 > 10">
+  <div class="w-100 px-4 contenedor" *ngIf="!!monitor">
+    <div class="d-flex flex-row">
+      <div class="content rounded shadow position-fixed cuerpo{{monitor.qr}}" [ngClass]="(!oculto) ? 'tarjeta' : 'monitor'" id="monitor">
+        <div class="header{{monitor.qr}} d-flex align-items-center">
+          <div class="position-absolute">
+            <button class="btn" *ngIf="!oculto" (click)="oculto = !oculto">
+              <i class="fas fa-expand fa-2x"></i>
+            </button>
+            <button class="btn" *ngIf="oculto" (click)="oculto = !oculto">
+              <i class="fas fa-compress fa-2x"></i>
             </button>
           </div>
+          <div class="d-flex align-items-center mx-auto">
+            <div class="tituloMonitor mx-auto">
+              <p class="textoMonitor">{{ monitor.name }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex"  id="carrusel">
+          <img *ngIf="monitor.imgs !== []" [src]="avatar ? avatar : 'assets/images/icono.jpg'" class="imagenMonitor mx-auto w-100">
+          <ngb-carousel *ngIf="monitor.imgs" class="w-100">
+            <ng-template ngbSlide *ngFor="let img of monitor.imgs" class="w-100">
+              <div class="picsum-img-wrapper d-flex w-100" [id]="'slide-' + img.id">
+                <img [src]="img.url" class="imagenMonitor mx-auto w-100">
+              </div>
+            </ng-template>
+          </ngb-carousel>
+        </div>
+        <div class="body">
+          <div class="d-flex flex-column">
+            <div class="d-flex mx-auto">
+              <button class="btn turnoMonitor rounded-circle textoCuerpo texto{{monitor.qr}} mb-0
+              mx-auto d-flex align-items-center justify-content-center p-0" id="info">
+                {{ monitor.currentTurn }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="content position-absolute tarjetas" id="tarjetas" *ngIf="!!relacionados">
-      <ul style="list-style: none;">
-        <li *ngFor="let item of relacionados" class="rounded shadow lista cuerpo{{item.qr}}" style="overflow: hidden;">
-          <div class="header{{item.qr}}" style="position: relative; z-index: 5;">
-            <div class="d-flex align-items-center">
-              <div class="tituloTarjetas mx-auto">
-                <p class="textoTarjetas">{{ item.name }}</p>
-              </div>
-            </div>
-          </div>
-          <div class="body posNum" style="position: relative; top: -3vh; z-index: 5;">
-            <div class="d-flex flex-row">
-              <div class="d-flex ml-auto mr-3">
-                <button class="btn turnoTarjeta rounded-circle infoTarj texto{{item.qr}}
-                textoCuerpoTarjetas mb-0 mx-auto d-flex align-items-center justify-content-center">
-                  {{ item.curTurn }}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex tarjetita" style="position: relative; top: -11vh; z-index: 3;">
-            <img *ngIf="!item.imgs" [src]="item.avatar ? item.avatar : 'assets/images/icono.jpg'" class="imagenTarjetas my-auto w-100">
-            <ngb-carousel *ngIf="item.imgs" class="w-100">
-              <ng-template ngbSlide *ngFor="let img of item.imgs" class="w-100">
-                <div class="picsum-img-wrapper d-flex w-100" [id]="'slide-' + img.id">
-                  <img [src]="img.url" class="w-100">
+
+
+
+
+      <div class="content position-absolute tarjetas" id="tarjetas" *ngIf="!!relacionados">
+        <ul style="list-style: none;">
+          <li *ngFor="let item of relacionados" class="rounded shadow lista cuerpo{{item.qr}}" style="overflow: hidden;">
+            <div class="header{{item.qr}}" style="position: relative; z-index: 5;">
+              <div class="d-flex align-items-center">
+                <div class="tituloTarjetas mx-auto">
+                  <p class="textoTarjetas">{{ item.idLocalRelated.name || item.local.name }}</p>
+                  <p class="textoTarjetas">Nombre por defecto</p>
                 </div>
-              </ng-template>
-            </ngb-carousel>
+              </div>
+            </div>
+            <div class="body posNum" style="position: relative; top: -3vh; z-index: 5;">
+              <div class="d-flex flex-row">
+                <div class="d-flex ml-auto mr-3">
+                  <button class="btn turnoTarjeta rounded-circle infoTarj texto{{item.qr}}
+                  textoCuerpoTarjetas mb-0 mx-auto d-flex align-items-center justify-content-center">
+                    {{ item.curTurn }}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex tarjetita" style="position: relative; top: -11vh; z-index: 3;">
+              <img *ngIf="!item.imgs" [src]="item.avatar ? item.avatar : 'assets/images/icono.jpg'" class="imagenTarjetas my-auto w-100">
+              <ngb-carousel *ngIf="item.imgs" class="w-100">
+                <ng-template ngbSlide *ngFor="let img of item.imgs" class="w-100">
+                  <div class="picsum-img-wrapper d-flex w-100" [id]="'slide-' + img.id">
+                    <img [src]="img.url" class="w-100">
+                  </div>
+                </ng-template>
+              </ngb-carousel>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="id === null">
+  Hola
+  </div>
+</div> -->
+
+
+
+<div class="c-body"  *ngIf="monitor">
+  <div class="c-contenedor">
+    <div class="l-campo">
+
+      <div class="left"  id="left">
+        <div class="c-turno-sm g-mb-sm">
+          <div class="c-turno-sm__header">
+            <div class="c-turno-sm__name">Charcuteria </div>
           </div>
-        </li>
-      </ul>
+          <div class="c-turno-sm__footer">
+            <img class="c-turno-sm__image" src="assets/images/charc.jpg" alt="">
+          </div>
+          <div class="c-turno-sm__body">
+            <p class="c-turno-sm__text">ATENDIENDO</p>
+            <p class="c-turno-sm__turn">17</p>
+          </div>
+        </div>
+
+        <div class="c-turno-sm">
+          <div class="c-turno-sm__header">
+            <div class="c-turno-sm__name">Fruteria</div>
+          </div>
+          <div class="c-turno-sm__footer">
+            <img class="c-turno-sm__image" src="assets/images/verd.webp" alt="">
+          </div>
+          <div class="c-turno-sm__body">
+            <p class="c-turno-sm__text">ATENDIENDO</p>
+            <p class="c-turno-sm__turn">64</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right"  id="right">
+
+        <div class="c-turno">
+
+          <div class="c-expand">
+            <i *ngIf="!oculto"  (click)="activar()" class="fas fa-expand  c-icon" id="exp"></i>
+            <i *ngIf="oculto" (click)="desactivar()" class="fas fa-compress  c-icon" id="com"></i>
+          </div>
+
+
+          <div class="c-turno__header">
+            <div class="c-turno__name">{{ monitor.name }}</div>
+          </div>
+          <div class="c-turno__footer">
+            <!-- <img class="c-turno__image" src="assets/images/icono.jpg" alt=""> -->
+            <div class="d-flex"  id="carrusel">
+              <img *ngIf="monitor.imgs !== []" [src]="avatar ? avatar : 'assets/images/icono.jpg'" class="imagenMonitor mx-auto w-100 c-turno__image">
+              <ngb-carousel *ngIf="monitor.imgs" class="w-100">
+                <ng-template ngbSlide *ngFor="let img of monitor.imgs" class="w-100">
+                  <div class="picsum-img-wrapper d-flex w-100" [id]="'slide-' + img.id">
+                    <img [src]="img.url" class="imagenMonitor mx-auto w-100">
+                  </div>
+                </ng-template>
+              </ngb-carousel>
+            </div>
+          </div>
+          <div class="c-turno__body">
+
+            <div class="c-turno__marcador">
+              <p class="c-turno__text">ATENDIENDO</p>
+              <p class="c-turno__turn">220</p>
+            </div>
+
+
+            <div class="c-turno__QR ml-5" *ngIf="oculto">
+              <div class="d-print-block QR container-fluid" >
+                <div class="qr-image">
+                    <img class="qr-img" [src]="response" alt="">
+                    <!-- <qrcode class="no" [qrdata]="myAngularxQrCode" [width]="260" [errorCorrectionLevel]="'M'"></qrcode> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
     </div>
   </div>
 </div>
 
-
-<div *ngIf="id === null">
-Hola
-</div>

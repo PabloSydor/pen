@@ -14,6 +14,7 @@ export const environment = {
     app: 'https://tuturno.hipermercode.eu/api',
     oauth: 'https://oauthv2.hipermercode.eu/api'
   },
+  codigo: 'https://qr.hipermercode.eu/api/',
 };
 
 /*
